@@ -13,18 +13,18 @@ const Home = () => {
 
 	const GetRolesSection = (roles) => {
 		var result = [];
-		if (roles.indexOf("Base") > -1) {
-			result.push(Base(currentUser));
-		}
-		if (roles.indexOf("Médecin") > -1) {
-			result.push(Medecin(currentUser));
-		}
-		if (roles.indexOf("Gestionnaire colonie") > -1) {
-			result.push(Gestionnaire(currentUser));
-		}
-		if (roles.indexOf("Responsable sécurité") > -1) {
-			result.push(Securite(currentUser));
-		}
+
+		var dict = {
+			"Base": Base,
+			"Médecin": Medecin,
+			"Gestionnaire colonie": Gestionnaire,
+			"Responsable sécurité": Securite,
+		  };
+	
+		  for(var key in dict) {
+			if (roles.indexOf(key) > -1)
+			result.push(dict[key](currentUser));
+		  }
 		return result;
 	};
 
