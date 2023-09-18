@@ -10,7 +10,10 @@ const Login = () => {
 	const [userCode, setUserCode] = useState("");
 
 	const handleChange = (e) => {
-		setUserCode(e.target.value);
+		const reg = RegExp(/^(\s*|\d+)$/);
+		if (reg.test(e.target.value)) {
+			setUserCode(e.target.value);
+		}
 	};
 
 	const handleSubmit = (e) => {
@@ -33,7 +36,15 @@ const Login = () => {
 			</h1>
 			<h2 className="login-helper">Saisissez votre code personnel :</h2>
 			<form>
-				<input type="text" className="login-input" onChange={handleChange} />
+				<input
+					type="text"
+					maxLength="4"
+					value={userCode}
+					className="login-input"
+					onChange={handleChange}
+					placeholder="Code personnel"
+				/>
+				<span className="underline" />
 				<button type="submit" className="login-button" onClick={handleSubmit}>
 					VALIDER
 				</button>
