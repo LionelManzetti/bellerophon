@@ -1,5 +1,4 @@
 import "../../styles/login.css";
-import "../../styles/stars.css";
 import { useState } from "react";
 import { users } from "../../datasets/users.js";
 import { useNavigate } from "react-router-dom";
@@ -27,10 +26,6 @@ const Login = () => {
 
 	return (
 		<div className="login-container">
-			<div className="background-container">
-				<div className="stars" />
-				<div className="twinkling" />
-			</div>
 			<h1 className="login-title">
 				Bienvenue sur la page de connexion du Nostromo
 			</h1>
