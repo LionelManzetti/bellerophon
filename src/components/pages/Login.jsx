@@ -36,15 +36,17 @@ const Login = () => {
 			</h1>
 			<h2 className="login-helper">Saisissez votre code personnel :</h2>
 			<form>
-				<input
-					type="text"
-					maxLength="4"
-					value={userCode}
-					className="login-input"
-					onChange={handleChange}
-					placeholder="Code personnel"
-				/>
-				<span className="underline" />
+				<div className="input-wrapper">
+					<input
+						type="text"
+						maxLength="4"
+						value={userCode}
+						className="login-input"
+						onChange={handleChange}
+						placeholder="Code personnel"
+					/>
+					<span className="underline" />
+				</div>
 				<button type="submit" className="login-button" onClick={handleSubmit}>
 					VALIDER
 				</button>
