@@ -1,6 +1,6 @@
 export const users = [
 	{
-		id: "9511",
+		id: "0001",
 		roles: ["Base", "Pilote"],
 		firstName: "James",
 		lastName: "Holden",
@@ -16,7 +16,7 @@ export const users = [
 		realGeneticCode: ["R", "V", "V", "J"],
 	},
 	{
-		id: "2912",
+		id: "0002",
 		roles: ["Base", "Médecin"],
 		firstName: "Naomi",
 		lastName: "Nagata",
@@ -32,7 +32,7 @@ export const users = [
 		realGeneticCode: ["R", "R", "R", "J"],
 	},
 	{
-		id: "7664",
+		id: "0003",
 		roles: ["Base", "Gestionnaire colonie"],
 		firstName: "Amos",
 		lastName: "Burton",
@@ -48,7 +48,7 @@ export const users = [
 		realGeneticCode: ["R", "R", "V", "J"],
 	},
 	{
-		id: "7985",
+		id: "0004",
 		roles: ["Base", "Responsable sécurité"],
 		firstName: "Lena",
 		lastName: "Pierre",
