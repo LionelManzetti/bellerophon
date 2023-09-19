@@ -1,24 +1,24 @@
-import "./App.css";
-import "./styles/stars.css";
-import Login from "./components/pages/Login";
-import Home from "./components/pages/Home";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import './App.css';
+import Home from './components/pages/Home';
+import Login from './components/pages/Login';
+import './styles/stars.css';
 
 function App() {
-	return (
-		<div id="root">
-			<div className="background-container">
-				<div className="stars" />
-				<div className="twinkling" />
-			</div>
-			<Router>
-				<Routes>
-					<Route path="/nostromo/:userId" element={<Home />} />
-					<Route path="/nostromo/" element={<Login />} />
-				</Routes>
-			</Router>
-		</div>
-	);
+  return (
+    <div id="root">
+      <div className="background-container">
+        <div className="stars" />
+        <div className="twinkling" />
+      </div>
+      <Router>
+        <Routes>
+          <Route path="/nostromo/:userId" element={<Home />} />
+          <Route path="/nostromo/" element={<Login />} />
+        </Routes>
+      </Router>
+    </div>
+  );
 }
 
 export default App;
