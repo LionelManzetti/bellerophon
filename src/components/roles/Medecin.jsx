@@ -1,4 +1,4 @@
-import "../../styles/home.css";
+import "../../styles/roles.css";
 import { useState } from "react";
 import { users } from "../../datasets/users.js";
 
@@ -29,9 +29,9 @@ function Medecin(currentUser) {
 	}
 
 	return (
-		<div>
-			<div>Dossiers médicaux : </div>
-			<h2>Saisissez le nom du patient :</h2>
+		<div className="roles-container">
+			<div className="roles-title">Dossiers médicaux : </div>
+			<h2 className="roles-content">Saisissez le nom du patient :</h2>
 			<form>
 				<div>
 					<input
