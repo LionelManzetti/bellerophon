@@ -1,15 +1,20 @@
 import '../../styles/roles.css';
 
 const Base = (currentUser) => {
-  const { firstName, lastName, roles, helperMessage } = currentUser;
   return (
     <div className="roles-container">
       <div className="roles-title">
-        Welcome {firstName} {lastName}
+        Welcome {currentUser.firstName} {currentUser.lastName}
       </div>
-      <div className="roles-content">You have {roles.length} roles.</div>
-      <div className="roles-content">{helperMessage}</div>
-      <div className="roles-content">...</div>
+      <div className="roles-content">Nom : {currentUser.lastName}</div>
+      <div className="roles-content">Prénom : {currentUser.firstName}</div>
+      <div className="roles-content">Age : {currentUser.age}</div>
+      <div className="roles-content">Genre : {currentUser.gender}</div>
+      <div className="roles-content">Fonction : {currentUser.function}</div>
+      <div className="roles-content">Spécialité : {currentUser.specialty}</div>
+      <div className="roles-content">
+        Informations spécifiques : {currentUser.helperMessage}
+      </div>
     </div>
   );
 };

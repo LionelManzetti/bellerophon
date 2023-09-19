@@ -5,6 +5,7 @@ import Base from '../roles/Base.jsx';
 import Gestionnaire from '../roles/Gestionnaire.jsx';
 import Medecin from '../roles/Medecin.jsx';
 import Securite from '../roles/Securite.jsx';
+import Pirate from '../roles/Pirate.jsx';
 
 const Home = () => {
   const { userId } = useParams();
@@ -12,16 +13,17 @@ const Home = () => {
   console.log(currentUser);
 
   const GetRolesSection = (roles) => {
-    var result = [];
+    let result = [];
 
-    var dict = {
+    const dict = {
       Base: Base,
       Médecin: Medecin,
       'Gestionnaire colonie': Gestionnaire,
       'Responsable sécurité': Securite,
+      Pirate: Pirate,
     };
 
-    for (var key in dict) {
+    for (let key in dict) {
       if (roles.indexOf(key) > -1) result.push(dict[key](currentUser));
     }
     return result;

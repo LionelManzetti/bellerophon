@@ -1,9 +1,25 @@
-import '../../styles/home.css';
+import { users } from '../../datasets/users.js';
+import '../../styles/roles.css';
 
-const Gestionnaire = (currentUser) => {
+const Gestionnaire = () => {
+  const GetColonsSection = () => {
+    let result = [];
+    result.push(<div className="roles-content">Nom Prénom, Fonction</div>);
+    for (const user of users) {
+      if (user.category != 'Eugéniste' && user.category != 'Inactif')
+        result.push(
+          <div className="roles-content">
+            {user.lastName} {user.firstName}, {user.function}
+          </div>,
+        );
+    }
+    return result;
+  };
+
   return (
-    <div>
-      <div>Gestionnaire de colonie : {currentUser.firstName}</div>
+    <div className="roles-container">
+      <div className="roles-title">Liste des colons: </div>
+      {GetColonsSection()}
     </div>
   );
 };

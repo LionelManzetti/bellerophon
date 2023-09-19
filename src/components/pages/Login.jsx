@@ -38,7 +38,7 @@ const Login = () => {
             value={userCode}
             className="login-input"
             onChange={handleChange}
-            placeholder="Code personnel"
+            placeholder="____"
           />
           <span className="underline" />
         </div>
