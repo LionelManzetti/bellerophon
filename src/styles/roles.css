@@ -3,7 +3,6 @@
   border-style: solid;
   border-color: lightgreen;
   max-width: 100rem;
-  max-height: 60rem;
   margin: 2rem;
   background-color: #27272b;
   position: relative;
@@ -69,5 +68,19 @@
   }
   &:focus + .underline {
     width: 4ch;
+  }
+}
+
+.hacking-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  & .login-input {
+    width: 10ch;
+    letter-spacing: 12px;
+    &::placeholder {
+      text-align: center;
+    }
   }
 }
