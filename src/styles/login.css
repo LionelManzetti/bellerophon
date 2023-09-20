@@ -56,9 +56,6 @@
     color: white;
     opacity: 0.5;
   }
-  &:focus {
-    width: 8ch;
-  }
 }
 
 .login-button {
