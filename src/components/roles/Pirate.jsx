@@ -3,7 +3,7 @@ import { users } from '../../datasets/users.js';
 import '../../styles/roles.css';
 import PatientInfo from '../common/PatientInfo.jsx';
 
-function Pirate() {
+function Pirate({ isEnvCentral }) {
   const [userName, setUserName] = useState('');
 
   const handlePatientSearch = (e) => {
@@ -24,17 +24,25 @@ function Pirate() {
 
   return (
     <div className="roles-container">
-      <div className="roles-title">Piratage en cours : </div>
-      <h2 className="roles-content">Saisissez le nom du passager :</h2>
-      <input
-        className="roles-inputBox"
-        type="text"
-        maxLength="20"
-        value={userName}
-        onChange={handlePatientSearch}
-        placeholder="nom du patient"
-      />
-      {GetPatientSection()}
+      {isEnvCentral ? (
+        <div className="roles-title">
+          Piratage interdit sur ordinateur central !
+        </div>
+      ) : (
+        <>
+          <div className="roles-title">Piratage en cours : </div>
+          <h2 className="roles-content">Saisissez le nom du passager :</h2>
+          <input
+            className="roles-inputBox"
+            type="text"
+            maxLength="20"
+            value={userName}
+            onChange={handlePatientSearch}
+            placeholder="nom du patient"
+          />
+          {GetPatientSection()}
+        </>
+      )}
     </div>
   );
 }

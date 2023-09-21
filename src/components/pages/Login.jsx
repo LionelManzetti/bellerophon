@@ -1,12 +1,19 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { users } from '../../datasets/users.js';
 import '../../styles/login.css';
 
 const Login = () => {
   const navigate = useNavigate();
+  const { env } = useParams();
   const userIdArray = users.map((user) => user.id);
   const [userCode, setUserCode] = useState('');
+
+  if (env === 'central') {
+    window.localStorage.setItem('env', 'central');
+  } else {
+    window.localStorage.setItem('env', 'local');
+  }
 
   const handleChange = (e) => {
     const reg = RegExp(/^(\s*|\d+)$/);
@@ -18,7 +25,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (userIdArray.includes(userCode)) {
-      navigate(userCode);
+      navigate('/nostromo/user/' + userCode);
     } else {
       alert('Wrong code ' + userCode);
     }
