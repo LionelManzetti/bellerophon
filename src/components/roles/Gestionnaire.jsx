@@ -8,7 +8,7 @@ const Gestionnaire = () => {
       if (user.category != 'Eugéniste' && user.category != 'Inactif')
         result.push(
           <div className="roles-listItem">
-            {user.lastName} {user.firstName}, {user.function}
+            {user.lastName} {user.firstName}, {user.job}
           </div>,
         );
     }

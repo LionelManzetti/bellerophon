@@ -78,4 +78,20 @@ export const users = [
     secretRole: 'Eugeniste',
     realGeneticCode: ['R', 'R', 'R', 'R'],
   },
+  {
+    id: '0006',
+    roles: ['Base', 'Technicien', 'Réparation'],
+    firstName: 'Mario',
+    lastName: 'Magaglione',
+    job: 'Technicien',
+    specialty: 'none',
+    geneticCode: ['R', 'J', 'R', 'B'],
+    age: 35,
+    gender: 'M',
+    helperMessage:
+      'Je suis le technicien en chef. Si un truc est cassé, on fait appel à moi.',
+    category: 'key',
+    secretRole: 'none',
+    realGeneticCode: ['R', 'J', 'R', 'B'],
+  },
 ];

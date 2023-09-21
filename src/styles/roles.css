@@ -2,11 +2,10 @@
   border: 1cap;
   border-style: solid;
   border-color: lightgreen;
-  max-width: 100rem;
   margin: 2rem;
-  background-color: #27272b;
+  background-color: #4a4a4e9f;
   position: relative;
-  width: 80%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -53,6 +52,15 @@
   margin-bottom: 1rem;
   text-align: center;
   color: white;
+}
+
+.roles-subtitle {
+  font-size: 3rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+  font-style: italic;
+  text-align: center;
+  color: lightgreen;
 }
 
 .roles-inputBox {

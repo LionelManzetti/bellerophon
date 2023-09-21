@@ -8,6 +8,7 @@ import Pilote from '../roles/Pilote.jsx';
 import Pirate from '../roles/Pirate.jsx';
 import Securite from '../roles/Securite.jsx';
 import Technicien from '../roles/Technicien.jsx';
+import Reparation from '../roles/Reparation.jsx';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -33,9 +34,11 @@ const Home = () => {
       case 'Pirate':
         return <Pirate isEnvCentral={isEnvCentral} />;
       case 'Technicien':
-        return <Technicien isEnvCentral={isEnvCentral} />;
+        return <Technicien />;
       case 'Pilote':
         return <Pilote isEnvCentral={isEnvCentral} />;
+      case 'Réparation':
+        return <Reparation isEnvCentral={isEnvCentral} />;
 
       default:
         return <div>Role non trouvé</div>;

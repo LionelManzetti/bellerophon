@@ -13,7 +13,7 @@ function Securite() {
       <div>
         <div>Nom : {lastName}</div>
         <div>Prénom : {firstName}</div>
-        <div>Code d accès :{id}</div>
+        <div>Code d'accès :{id}</div>
       </div>
     );
   };
