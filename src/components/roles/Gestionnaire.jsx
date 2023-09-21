@@ -1,5 +1,4 @@
 import { users } from '../../datasets/users.js';
-import '../../styles/roles.css';
 
 const Gestionnaire = () => {
   const GetColonsSection = () => {

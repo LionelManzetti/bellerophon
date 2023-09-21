@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { users } from '../../datasets/users.js';
-import '../../styles/login.css';
 
 const Login = () => {
   const navigate = useNavigate();

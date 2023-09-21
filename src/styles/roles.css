@@ -9,7 +9,7 @@
   width: 80%;
   display: flex;
   flex-direction: column;
-  justify-content: top;
+  justify-content: center;
   align-items: center;
   & form {
     width: 300px;
@@ -82,5 +82,14 @@
     &::placeholder {
       text-align: center;
     }
+  }
+}
+
+.roles-lines {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  & .roles-content {
+    margin-right: 40px;
   }
 }
