@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { users } from '../../datasets/users.js';
-import '../../styles/roles.css';
 
 function Securite() {
   const [userName, setUserCode] = useState('');

@@ -3,6 +3,8 @@ import './App.css';
 import Home from './components/pages/Home';
 import Login from './components/pages/Login';
 import './styles/stars.css';
+import './styles/login.css';
+import './styles/roles.css';
 
 function App() {
   return (

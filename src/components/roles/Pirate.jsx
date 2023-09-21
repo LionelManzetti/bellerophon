@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { users } from '../../datasets/users.js';
-import '../../styles/roles.css';
+
 import PatientInfo from '../common/PatientInfo.jsx';
 
 function Pirate({ isEnvCentral }) {
