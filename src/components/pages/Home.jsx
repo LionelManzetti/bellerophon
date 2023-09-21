@@ -4,35 +4,48 @@ import '../../styles/home.css';
 import Base from '../roles/Base.jsx';
 import Gestionnaire from '../roles/Gestionnaire.jsx';
 import Medecin from '../roles/Medecin.jsx';
-import Securite from '../roles/Securite.jsx';
 import Pirate from '../roles/Pirate.jsx';
+import Securite from '../roles/Securite.jsx';
+import Technicien from '../roles/Technicien.jsx';
+import Pilote from '../roles/Pilote.jsx';
 
 const Home = () => {
   const { userId } = useParams();
   const currentUser = users.find((u) => u.id == userId);
-  console.log(currentUser);
+  const isEnvCentral = window.localStorage.getItem('env') === 'central';
 
-  const GetRolesSection = (roles) => {
-    let result = [];
+  const getRoleElement = (role) => {
+    switch (role) {
+      case 'Base':
+        return <Base currentUser={currentUser} />;
+      case 'Médecin':
+        return <Medecin />;
+      case 'Gestionnaire colonie':
+        return <Gestionnaire />;
+      case 'Responsable sécurité':
+        return <Securite />;
+      case 'Pirate':
+        return <Pirate isEnvCentral={isEnvCentral} />;
+      case 'Technicien':
+        return <Technicien isEnvCentral={isEnvCentral} />;
+      case 'Pilote':
+        return <Pilote isEnvCentral={isEnvCentral} />;
 
-    const dict = {
-      Base: Base,
-      Médecin: Medecin,
-      'Gestionnaire colonie': Gestionnaire,
-      'Responsable sécurité': Securite,
-      Pirate: Pirate,
-    };
-
-    for (let key in dict) {
-      if (roles.indexOf(key) > -1) result.push(dict[key](currentUser));
+      default:
+        return <div>Role non trouvé</div>;
     }
-    return result;
   };
 
   return (
     <div className="home-container">
       {currentUser
-        ? GetRolesSection(currentUser.roles)
+        ? currentUser.roles.map((role) => {
+            return (
+              <div className="home-content" key={role}>
+                {getRoleElement(role)}
+              </div>
+            );
+          })
         : "Pas d'utilisateur trouvé"}
     </div>
   );

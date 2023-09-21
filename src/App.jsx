@@ -13,8 +13,9 @@ function App() {
       </div>
       <Router>
         <Routes>
-          <Route path="/nostromo/:userId" element={<Home />} />
-          <Route path="/nostromo/" element={<Login />} />
+          <Route path="/nostromo/user/:userId" element={<Home />} />
+          <Route path="/nostromo/:env" element={<Login />} />
+          <Route path="/nostromo" element={<Login />} />
         </Routes>
       </Router>
     </div>
