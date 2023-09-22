@@ -81,7 +81,7 @@ const Pilote = ({ isEnvCentral }) => {
         </div>
       ) : (
         <div className="roles-content">
-          Navigation seulement disponnible sur l'ordinateur central
+          {"Navigation seulement disponible sur l'ordinateur central"}
         </div>
       )}
     </div>

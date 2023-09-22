@@ -1,0 +1,41 @@
+.canvas {
+  height: 700px !important;
+  width: 700px !important;
+  background-color: black;
+  background-image: linear-gradient(to bottom, black, #003f59);
+  cursor: pointer;
+  text-align: center;
+  margin: auto;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.how-to-play-component-wrapper {
+  z-index: 0 !important;
+}
+
+.how-to-play-component-container {
+  & .how-to-play-inner-container {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 20px 50px;
+    min-width: 350px;
+    border-radius: 5px;
+
+    & .title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    & .keys {
+      color: cyan;
+    }
+
+    & .play-retry-button {
+      background-color: cyan;
+      color: black;
+      font-weight: 700;
+    }
+  }
+}

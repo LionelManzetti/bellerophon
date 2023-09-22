@@ -4,7 +4,7 @@ const Base = ({ currentUser }) => {
   return (
     <div className="roles-container">
       <div className="roles-title">
-        Welcome {firstName} {lastName}
+        Bienvenue {firstName} {lastName}
       </div>
       <div className="roles-lines">
         <div className="roles-content">Nom : {lastName}</div>
