@@ -1,0 +1,11 @@
+.tower-blocks-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.tower-blocks-canvas {
+  background-color: white;
+  margin-bottom: 20px;
+}
