@@ -2,7 +2,7 @@ import { useNavigate, useParams } from 'react-router';
 import { users } from '../../datasets/users.js';
 import '../../styles/home.css';
 import Base from '../roles/Base.jsx';
-import Gestionnaire from '../roles/Gestionnaire.jsx';
+import Responsable from '../roles/Responsable.jsx';
 import Medecin from '../roles/Medecin.jsx';
 import Pilote from '../roles/Pilote.jsx';
 import Pirate from '../roles/Pirate.jsx';
@@ -27,9 +27,13 @@ const Home = () => {
         return <Base currentUser={currentUser} />;
       case 'Médecin':
         return <Medecin />;
-      case 'Gestionnaire colonie':
-        return <Gestionnaire />;
-      case 'Responsable sécurité':
+      case 'Responsable personnel spatial':
+        return <Responsable fonction="Personnel Spatial" />;
+      case 'Responsable passagers':
+        return <Responsable fonction="Passager" />;
+      case 'Responsable personnel terraformation':
+        return <Responsable fonction="Terraformeur" />;
+      case 'Sécurité':
         return <Securite />;
       case 'Pirate':
         return <Pirate isEnvCentral={isEnvCentral} />;
@@ -48,7 +52,7 @@ const Home = () => {
   return (
     <div className="home-container">
       {currentUser
-        ? currentUser.roles.map((role) => {
+        ? currentUser.roles.split(' - ').map((role) => {
             return (
               <div className="home-container" key={role}>
                 {getRoleElement(role)}

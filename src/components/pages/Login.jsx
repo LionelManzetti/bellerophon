@@ -15,10 +15,7 @@ const Login = () => {
   }
 
   const handleChange = (e) => {
-    const reg = RegExp(/^(\s*|\d+)$/);
-    if (reg.test(e.target.value)) {
-      setUserCode(e.target.value);
-    }
+    setUserCode(e.target.value.toLocaleUpperCase());
   };
 
   const handleSubmit = (e) => {

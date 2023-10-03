@@ -25,9 +25,7 @@ function Pirate({ isEnvCentral }) {
   return (
     <div className="roles-container">
       {isEnvCentral ? (
-        <div className="roles-title">
-          Piratage interdit sur ordinateur central !
-        </div>
+        <div className="roles-title">Tentative d'accès interdit !</div>
       ) : (
         <>
           <div className="roles-title">Piratage en cours : </div>
