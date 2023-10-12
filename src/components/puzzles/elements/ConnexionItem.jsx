@@ -8,7 +8,7 @@ import Cable5 from '../images/Cable5.png';
 import '../../../styles/puzzles.css';
 import { useState } from 'react';
 
-const ConnexionItem = ({ content }) => {
+const ConnexionItem = ({ content, changeItemRotationInGrid }) => {
   const [userCode, setUserCode] = useState('');
 
   let { position, type, rotation } = content;
@@ -135,7 +135,14 @@ const ConnexionItem = ({ content }) => {
       img = <img className={imgClassName} src={Empty} r />;
   }
 
-  return <div className={divClassName}>{img}</div>;
+  return (
+    <div
+      className={divClassName}
+      onClick={() => changeItemRotationInGrid(position)}
+    >
+      {img}
+    </div>
+  );
 };
 
 export default ConnexionItem;

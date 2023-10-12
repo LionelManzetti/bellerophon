@@ -1,38 +1,87 @@
 import '../../styles/puzzles.css';
+import { useState } from 'react';
 import ConnexionItem from './elements/ConnexionItem';
 import Target from './elements/Target';
 
 const ConnexionPuzzle = () => {
-  const targetContent = [];
-  targetContent.push(<Target type={1} position={1} />);
-  targetContent.push(<Target type={0} position={2} />);
-  targetContent.push(<Target type={-1} position={3} />);
-  targetContent.push(<Target type={-1} position={4} />);
-  targetContent.push(<Target type={-1} position={5} />);
-  targetContent.push(<Target type={-1} position={6} />);
-  targetContent.push(<Target type={1} position={7} />);
-  targetContent.push(<Target type={-1} position={8} />);
-  targetContent.push(<Target type={-1} position={9} />);
-  targetContent.push(<Target type={-1} position={10} />);
-  targetContent.push(<Target type={0} position={11} />);
-  targetContent.push(<Target type={-1} position={12} />);
+  const [grid, setGrid] = useState([]);
+  const [target, setTarget] = useState([]);
 
-  const gridContent = [
-    {
-      position: [1, 1],
-      type: -1,
-      rotation: 0,
-    },
-    {
-      position: [1, 2],
-      type: -1,
-      rotation: 0,
-    },
-  ];
+  const changeItemRotationInGrid = (position) => {
+    const newGrid = [...grid];
+    newGrid.forEach((element) => {
+      if (element.position === position) {
+        element.rotation = (element.rotation + 1) % 4;
+      }
+    });
+    setGrid(newGrid);
+  };
+
+  const targetContent = [];
+
+  const initTargetContent = (targetContent) => {
+    for (let i = 0; i < 12; i++) {
+      targetContent.push({
+        position: i + 1,
+        type: -1,
+      });
+    }
+    let type0 = 0;
+    let type1 = 0;
+    while (type0 < 2) {
+      const rand = Math.floor(Math.random() * 12);
+      if (targetContent[rand].type === -1) {
+        targetContent[rand].type = 0;
+        type0++;
+      }
+    }
+    while (type1 < 2) {
+      const rand = Math.floor(Math.random() * 12);
+      if (targetContent[rand].type === -1 && targetContent[rand].type !== 0) {
+        targetContent[rand].type = 1;
+        type1++;
+      }
+    }
+  };
+
+  initTargetContent(targetContent);
+
+  if (target.length === 0) {
+    setTarget(targetContent);
+  }
+
+  const generateTarget = (content) => {
+    return content.map((content, index) => {
+      return <Target content={content} key={index} />;
+    });
+  };
+
+  const gridContent = [];
+
+  const initGridContent = (gridContent) => {
+    for (let i = 0; i < 9; i++) {
+      gridContent.push({
+        position: [Math.floor(i / 3) + 1, (i % 3) + 1],
+        type: Math.floor(Math.random() * 6),
+        rotation: Math.floor(Math.random() * 4),
+      });
+    }
+    setGrid(gridContent);
+  };
+
+  if (grid.length === 0) {
+    initGridContent(gridContent);
+  }
 
   const generatePuzzleGrid = (content) => {
     return content.map((content, index) => {
-      return <ConnexionItem content={content} key={index} />;
+      return (
+        <ConnexionItem
+          key={index}
+          content={content}
+          changeItemRotationInGrid={changeItemRotationInGrid}
+        />
+      );
     });
   };
 
@@ -51,8 +100,8 @@ const ConnexionPuzzle = () => {
   return (
     <div className="container">
       <div className="grid-container">
-        {generatePuzzleGrid(gridContent)}
-        {targetContent}
+        {grid.length > 0 && generatePuzzleGrid(grid)}
+        {target.length > 0 && generateTarget(target)}
       </div>
       <button className="button" onClick={onReset}>
         Remise à zéro

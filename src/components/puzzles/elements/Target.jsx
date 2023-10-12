@@ -1,6 +1,7 @@
 import '../../../styles/puzzles.css';
 
-const Target = ({ type = 0, position = 0 }) => {
+const Target = ({ content }) => {
+  const { type, position } = content;
   let divClassName = 'target-item' + position.toString();
   if (position <= 3 || (position >= 7 && position <= 9)) {
     divClassName += ' target-topItem';
