@@ -10,16 +10,34 @@
   margin-bottom: 20px;
 }
 
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  align-content: center;
+  gap: 10px;
+}
+
+.button {
+  background-color: aquamarine;
+}
+
 .grid-container {
   display: grid;
   gap: 10px;
   background-color: rgb(56, 56, 56);
   align-items: center;
   justify-items: center;
+  margin-bottom: 1rem;
 }
 
 .grid-item {
-  background-color: white;
+  background-color: grey;
   width: 150px;
   height: 150px;
   line-height: 150px;
@@ -27,8 +45,25 @@
   font-size: xx-large;
 }
 
+.input-code {
+  background-color: aliceblue;
+  width: 6ch;
+  height: 5rem;
+  max-width: 6ch;
+  letter-spacing: 1ch;
+  margin-bottom: 2rem;
+  font-size: 3rem;
+  font-weight: 500;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  align-content: center;
+  align-self: center;
+  justify-self: center;
+}
+
 .img {
-  background-color: aquamarine;
+  background-color: grey;
   display: block;
   width: 150px;
   height: 150px;
