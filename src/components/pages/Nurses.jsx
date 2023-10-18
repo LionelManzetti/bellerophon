@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { users } from '../../datasets/users.js';
-import '../../styles/home.css';
+import '../../Styles/roles.css';
 
 const useInterval = (f, delay) => {
   const [timer, setTimer] = useState(undefined);
@@ -27,6 +27,8 @@ function Nurses() {
   const [timerStarted, setTimerStarted] = useState(false);
   const [timeRemaining, setTimeRemaining] = useState(-1);
 
+  const total_analysis_time = 300;
+
   const [start, stop, running] = useInterval(
     () => setTimeRemaining((x) => x - 1),
     1000,
@@ -38,8 +40,12 @@ function Nurses() {
     setTimeRemaining(-1);
   };
 
+  const onReduceTimeLeft = () => {
+    setTimeRemaining((x) => x - 30);
+  };
+
   const onStartAnalyse = () => {
-    setTimeRemaining(10);
+    setTimeRemaining(total_analysis_time);
     setTimerStarted(true);
     start();
   };
@@ -69,7 +75,11 @@ function Nurses() {
     } else if (timeRemaining > 0) {
       return (
         <div>
-          <div>Analyse en cours...</div>
+          <div className="roles-lines">
+            <button className="fake-button" onDoubleClick={onReduceTimeLeft}>
+              Analyse en cours, veuillez patienter...
+            </button>
+          </div>
           <div>Temps restant : {timeRemaining}s</div>
           <button
             type="submit"
@@ -108,20 +118,18 @@ function Nurses() {
   };
 
   return (
-    <div className="home-container">
-      <div className="roles-container">
-        <div className="roles-title">Analyse médicale </div>
-        <h2 className="roles-content">Saisissez le nom du patient :</h2>
-        <input
-          className="roles-inputBox"
-          type="text"
-          maxLength="20"
-          value={userName}
-          onChange={handleChange}
-          placeholder="nom du patient"
-        />
-        {GetPatientSection()}
-      </div>
+    <div className="roles-container">
+      <div className="roles-title">Analyse médicale </div>
+      <h2 className="roles-content">Saisissez le nom du patient :</h2>
+      <input
+        className="roles-inputBox"
+        type="text"
+        maxLength="20"
+        value={userName}
+        onChange={handleChange}
+        placeholder="nom du patient"
+      />
+      {GetPatientSection()}
     </div>
   );
 }

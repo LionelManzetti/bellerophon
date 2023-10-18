@@ -117,3 +117,16 @@
     margin-right: 40px;
   }
 }
+
+.fake-button {
+  border: none;
+  width: 50rem;
+  background-color: transparent;
+  height: 3rem;
+  font-size: 3rem;
+  font-weight: 300;
+  color: white;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+}
