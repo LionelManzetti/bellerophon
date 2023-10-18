@@ -239,3 +239,24 @@
   grid-row-start: 2;
   grid-row-end: 2;
 }
+
+.target-itembottomright {
+  grid-column-start: 5;
+  grid-column-end: 5;
+  grid-row-start: 5;
+  grid-row-end: 5;
+}
+.target-itemtopleft {
+  grid-column-start: 1;
+  grid-column-end: 1;
+  grid-row-start: 1;
+  grid-row-end: 1;
+}
+.target-angleItems {
+  color: white;
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: xx-large;
+}
