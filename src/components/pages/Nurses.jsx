@@ -87,10 +87,10 @@ function Nurses() {
           <div>Nom : {lastName}</div>
           <div>Prénom : {firstName}</div>
           <div>Contaminé : {hackedGeneticCode ? 'Oui' : 'non'}</div>
-          <div>Code hyper-sommeil initial : {geneticCode}</div>
           <div>
             Code hyper-sommeil réel : {hackedGeneticCode || geneticCode}
           </div>
+          <image></image>
         </div>
       );
     }

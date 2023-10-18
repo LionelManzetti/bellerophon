@@ -340,7 +340,7 @@ export const users = [
     age: '',
     gender: '',
     helperMessage: '',
-    roles: 'Base - Pilote',
+    roles: 'Base - Entrainement - Pilote',
     category: 'Clef',
     secretRole: '',
     realGeneticCode: 'BBRV',
