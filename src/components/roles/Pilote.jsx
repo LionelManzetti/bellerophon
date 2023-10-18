@@ -1,10 +1,16 @@
 import { useState } from 'react';
 import {
   identity_check_navigation_code,
+  navigation_primary_code,
   unlock_navigation_code,
 } from '../common/codes';
 
 const Pilote = ({ isEnvCentral }) => {
+  const [primaryCheckCode, setprimaryCheck] = useState('');
+  const handlePrimaryCheckChange = (e) => {
+    setprimaryCheck(e.target.value.toLocaleUpperCase());
+  };
+
   const [idCheckCode, setUserCode1] = useState('');
   const handleIdCheckChange = (e) => {
     setUserCode1(e.target.value.toLocaleUpperCase());
@@ -22,7 +28,7 @@ const Pilote = ({ isEnvCentral }) => {
 
   const GetNavigationSection = () => {
     return navCode == unlock_navigation_code ? (
-      <div>
+      <div className="roles-centeredContent">
         <div className="roles-content">
           Saisie des nouveaux paramètres de navigation pour mise en orbite
           optimate :
@@ -46,7 +52,7 @@ const Pilote = ({ isEnvCentral }) => {
 
   const GetIdentityCheckSection = () => {
     return idCheckCode == identity_check_navigation_code ? (
-      <div>
+      <div className="roles-centeredContent">
         <div className="roles-content">Code déverrouillage navigation :</div>
         <input
           className="roles-inputBox"
@@ -63,21 +69,42 @@ const Pilote = ({ isEnvCentral }) => {
     );
   };
 
+  const GetPrimaryCheckSection = () => {
+    return primaryCheckCode == navigation_primary_code ? (
+      <div className="roles-centeredContent">
+        <div className="roles-content">
+          Code vérification identité (6 chiffres) :
+        </div>
+        <input
+          className="roles-inputBox"
+          type="text"
+          maxLength="6"
+          value={idCheckCode}
+          onChange={handleIdCheckChange}
+          placeholder="...."
+        />
+        {GetIdentityCheckSection()}
+      </div>
+    ) : (
+      <div className="roles-content">code primaire incorrect...</div>
+    );
+  };
+
   return (
     <div className="roles-container">
       <div className="roles-title">Navigation</div>
       {isEnvCentral ? (
-        <div>
-          <div className="roles-content">Code vérification identité :</div>
+        <div className="roles-centeredContent">
+          <div className="roles-content">Code primaire d'accès :</div>
           <input
             className="roles-inputBox"
             type="text"
-            maxLength="4"
-            value={idCheckCode}
-            onChange={handleIdCheckChange}
-            placeholder="...."
+            maxLength="6"
+            value={primaryCheckCode}
+            onChange={handlePrimaryCheckChange}
+            placeholder="......"
           />
-          {GetIdentityCheckSection()}
+          {GetPrimaryCheckSection()}
         </div>
       ) : (
         <div className="roles-content">

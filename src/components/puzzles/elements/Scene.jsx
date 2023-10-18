@@ -10,11 +10,21 @@ import {
 import { Button } from 'antd';
 import Stacks from './Stacks';
 import './styles.css';
+import { navigation_primary_code } from '../../common/codes';
 
-const Scene = ({ gameOver, setGameOver, score, setScore, canvasRef }) => {
+const Scene = ({
+  gameOver,
+  setGameOver,
+  score,
+  setScore,
+  canvasRef,
+  isEnvCentral,
+}) => {
   const mesh = useRef();
   const [isPlaying, setIsPlaying] = useState(false);
   const [stack, setStack] = useState([]);
+
+  const targetScore = 10;
 
   //Helper function for getting gradient block colors based on the number of blocks
   ///////////////////////////////////////////////////////////////////////////////////
@@ -39,18 +49,23 @@ const Scene = ({ gameOver, setGameOver, score, setScore, canvasRef }) => {
           <div className="how-to-play-inner-container">
             <p className="title">
               {gameOver
-                ? score >= 30
+                ? score >= targetScore
                   ? 'Gagné !'
                   : 'Perdu !'
-                : 'Comment jouer ?'}
+                : 'Test de réflexes'}
             </p>
             <hr />
             <p>
               {gameOver
-                ? score >= 30
-                  ? "Bravo, le code d'accès est B4567"
-                  : "Recommencez et essayez d'atteindre un score de 30 pour déverouiller le code d'accès"
-                : "Empilez les blocs les uns sur les autres et atteignez un score de 30 pour déverouillez l'accès au bloc médical."}
+                ? score >= targetScore
+                  ? isEnvCentral
+                    ? "Test de pilotage validé. Code primaire d'accès à la navigation : " +
+                      navigation_primary_code
+                    : "Test de réflexe validé. Vous pouvez lancer le test d'accès à la navigation sur l'ordinateur central."
+                  : "Vos réflexes sont encore impactés par votre sortie de l'hypersommeil. Continuez de vous entrainer..."
+                : 'Empilez les blocs les uns sur les autres et atteignez un score de ' +
+                  targetScore +
+                  '.'}
             </p>
             <p>
               Vous pouvez utiliser les touches suivantes:

@@ -3,7 +3,7 @@ import { Canvas } from '@react-three/fiber';
 import Scene from './elements/Scene';
 import './elements/styles.css';
 
-const TowerBlocks = () => {
+const TowerBlocks = ({ isEnvCentral }) => {
   const canvasRef = useRef();
 
   const [gameOver, setGameOver] = useState(false);
@@ -18,6 +18,7 @@ const TowerBlocks = () => {
   return (
     <Canvas className="canvas" ref={canvasRef}>
       <Scene
+        isEnvCentral={isEnvCentral}
         gameOver={gameOver}
         setGameOver={setGameOver}
         score={score}
