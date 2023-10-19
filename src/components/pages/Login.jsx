@@ -15,10 +15,7 @@ const Login = () => {
   }
 
   const handleChange = (e) => {
-    const reg = RegExp(/^(\s*|\d+)$/);
-    if (reg.test(e.target.value)) {
-      setUserCode(e.target.value);
-    }
+    setUserCode(e.target.value.toLocaleUpperCase());
   };
 
   const handleSubmit = (e) => {
@@ -33,7 +30,7 @@ const Login = () => {
   return (
     <div className="login-container">
       <h1 className="login-title">
-        Bienvenue sur la page de connexion du Nostromo
+        Bienvenue sur la page de connexion du Bellérophon
       </h1>
       <h2 className="login-helper">Saisissez votre code personnel :</h2>
       <input

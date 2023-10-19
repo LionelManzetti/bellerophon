@@ -35,9 +35,9 @@
 }
 
 .login-input {
-  width: 8ch;
+  width: 6ch;
   height: 5rem;
-  max-width: 8ch;
+  max-width: 6ch;
   letter-spacing: 1ch;
   margin-bottom: 2rem;
   justify-content: center;

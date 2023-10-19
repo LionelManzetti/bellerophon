@@ -11,15 +11,18 @@ const Base = ({ currentUser }) => {
         <div className="roles-content">Prénom : {firstName}</div>
       </div>
       <div className="roles-lines">
-        <div className="roles-content">Age : {age}</div>
-        <div className="roles-content">Genre : {gender}</div>
+        <div className="roles-content">Age : {age != '' ? age : 'Inconnu'}</div>
+        <div className="roles-content">
+          Genre : {gender != '' ? gender : 'Inconnu'}
+        </div>
       </div>
       <div className="roles-lines">
         <div className="roles-content">Fonction : {job}</div>
         <div className="roles-content">Spécialité : {specialty}</div>
       </div>
       <div className="roles-content">
-        Informations spécifiques : {helperMessage}
+        Informations spécifiques :{' '}
+        {helperMessage != '' ? helperMessage : 'Aucune'}
       </div>
     </div>
   );

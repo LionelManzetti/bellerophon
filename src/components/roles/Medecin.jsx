@@ -16,7 +16,7 @@ function Medecin() {
         <div>Prénom : {firstName}</div>
         <div>Age : {age}</div>
         <div>Genre : {gender}</div>
-        <div>Code Génétique : {hackedGeneticCode || geneticCode}</div>
+        <div>Code hyper-sommeil : {hackedGeneticCode || geneticCode}</div>
       </div>
     );
   };

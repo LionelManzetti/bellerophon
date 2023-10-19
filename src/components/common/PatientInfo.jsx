@@ -31,15 +31,17 @@ const PatientInfo = ({ patient }) => {
     <div>
       <div>Nom : {lastName}</div>
       <div>Prénom : {firstName}</div>
-      <div>Code Génétique : {geneticCode}</div>
+      <div>Code hyper-sommeil : {geneticCode}</div>
       <div>
-        Code Génétique Hacké :{' '}
+        Code hyper-sommeil Hacké :{' '}
         {alteredGeneticCode.length === 4
           ? alteredGeneticCode
           : storedGeneticCode}
       </div>
       <div className="hacking-container">
-        <h2 className="roles-content">Saisissez un nouveau code génétique :</h2>
+        <h2 className="roles-content">
+          Saisissez un nouveau code hyper-sommeil :
+        </h2>
         <input
           className="login-input"
           type="text"
