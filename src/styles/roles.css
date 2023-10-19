@@ -1,0 +1,132 @@
+.roles-container {
+  border: 1cap;
+  border-style: solid;
+  border-color: lightgreen;
+  margin: 2rem;
+  background-color: #4a4a4e9f;
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  & form {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.roles-centeredContent {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  & form {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.roles-title {
+  font-size: 4.5rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: lightgreen;
+  text-transform: uppercase;
+}
+
+.roles-listParent {
+  font-size: 3rem;
+  font-weight: 300;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: white;
+}
+
+.roles-listItem {
+  font-size: 3rem;
+  font-weight: 300;
+  font-style: italic;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: white;
+}
+
+.roles-content {
+  font-size: 3rem;
+  font-weight: 300;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: white;
+}
+
+.roles-subtitle {
+  font-size: 3rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+  font-style: italic;
+  text-align: center;
+  color: lightgreen;
+}
+
+.roles-inputBox {
+  font-size: 3rem;
+  font-weight: 300;
+  margin-bottom: 1rem;
+  text-align: center;
+  background-color: white;
+  color: black;
+  &::placeholder {
+    color: black;
+    opacity: 0.5;
+  }
+  &:focus + .underline {
+    width: 4ch;
+  }
+}
+
+.hacking-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  & .login-input {
+    width: 10ch;
+    letter-spacing: 12px;
+    &::placeholder {
+      text-align: center;
+    }
+  }
+}
+
+.roles-lines {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  & .roles-content {
+    margin-right: 40px;
+  }
+}
+
+.fake-button {
+  border: none;
+  width: 50rem;
+  background-color: transparent;
+  height: 3rem;
+  font-size: 3rem;
+  font-weight: 300;
+  color: white;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+}

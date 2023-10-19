@@ -1,0 +1,262 @@
+.tower-blocks-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.tower-blocks-canvas {
+  background-color: white;
+  margin-bottom: 20px;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  align-content: center;
+  gap: 10px;
+}
+
+.button {
+  background-color: aquamarine;
+}
+
+.grid-container {
+  display: grid;
+  gap: 10px;
+  background-color: rgb(56, 56, 56);
+  align-items: center;
+  justify-items: center;
+  margin-bottom: 1rem;
+}
+
+.grid-item {
+  background-color: grey;
+  width: 150px;
+  height: 150px;
+  line-height: 150px;
+  text-align: center;
+  font-size: xx-large;
+}
+
+.input-code {
+  background-color: aliceblue;
+  width: 6ch;
+  height: 5rem;
+  max-width: 6ch;
+  letter-spacing: 1ch;
+  margin-bottom: 2rem;
+  font-size: 3rem;
+  font-weight: 500;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  align-content: center;
+  align-self: center;
+  justify-self: center;
+}
+
+.img {
+  background-color: grey;
+  display: block;
+  width: 150px;
+  height: 150px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.rotate0 {
+  transform: rotate(0deg);
+}
+.rotate90 {
+  transform: rotate(90deg);
+}
+.rotate180 {
+  transform: rotate(180deg);
+}
+.rotate270 {
+  transform: rotate(270deg);
+}
+
+.target-topItem {
+  color: white;
+  width: 150px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: xx-large;
+}
+
+.target-sideItem {
+  color: white;
+  width: 25px;
+  height: 150px;
+  line-height: 150px;
+  text-align: center;
+  font-size: xx-large;
+}
+
+.target-redItem {
+  background-color: red;
+}
+.target-blueItem {
+  background-color: blue;
+}
+.target-none {
+  background-color: transparent;
+}
+
+.grid-item1 {
+  grid-column-start: 2;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 2;
+}
+.grid-item2 {
+  grid-column-start: 3;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 2;
+}
+.grid-item3 {
+  grid-column-start: 4;
+  grid-column-end: 4;
+  grid-row-start: 2;
+  grid-row-end: 2;
+}
+.grid-item4 {
+  grid-column-start: 2;
+  grid-column-end: 2;
+  grid-row-start: 3;
+  grid-row-end: 3;
+}
+.grid-item5 {
+  grid-column-start: 3;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 3;
+}
+.grid-item6 {
+  grid-column-start: 4;
+  grid-column-end: 4;
+  grid-row-start: 3;
+  grid-row-end: 3;
+}
+.grid-item7 {
+  grid-column-start: 2;
+  grid-column-end: 2;
+  grid-row-start: 4;
+  grid-row-end: 4;
+}
+.grid-item8 {
+  grid-column-start: 3;
+  grid-column-end: 3;
+  grid-row-start: 4;
+  grid-row-end: 4;
+}
+.grid-item9 {
+  grid-column-start: 4;
+  grid-column-end: 4;
+  grid-row-start: 4;
+  grid-row-end: 4;
+}
+
+.target-item1 {
+  grid-column-start: 2;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 1;
+}
+.target-item2 {
+  grid-column-start: 3;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 1;
+}
+.target-item3 {
+  grid-column-start: 4;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 1;
+}
+.target-item4 {
+  grid-column-start: 5;
+  grid-column-end: 5;
+  grid-row-start: 2;
+  grid-row-end: 2;
+}
+.target-item5 {
+  grid-column-start: 5;
+  grid-column-end: 5;
+  grid-row-start: 3;
+  grid-row-end: 3;
+}
+.target-item6 {
+  grid-column-start: 5;
+  grid-column-end: 5;
+  grid-row-start: 4;
+  grid-row-end: 4;
+}
+.target-item7 {
+  grid-column-start: 4;
+  grid-column-end: 4;
+  grid-row-start: 5;
+  grid-row-end: 5;
+}
+.target-item8 {
+  grid-column-start: 3;
+  grid-column-end: 3;
+  grid-row-start: 5;
+  grid-row-end: 5;
+}
+.target-item9 {
+  grid-column-start: 2;
+  grid-column-end: 2;
+  grid-row-start: 5;
+  grid-row-end: 5;
+}
+.target-item10 {
+  grid-column-start: 1;
+  grid-column-end: 1;
+  grid-row-start: 4;
+  grid-row-end: 4;
+}
+.target-item11 {
+  grid-column-start: 1;
+  grid-column-end: 1;
+  grid-row-start: 3;
+  grid-row-end: 3;
+}
+.target-item12 {
+  grid-column-start: 1;
+  grid-column-end: 1;
+  grid-row-start: 2;
+  grid-row-end: 2;
+}
+
+.target-itembottomright {
+  grid-column-start: 5;
+  grid-column-end: 5;
+  grid-row-start: 5;
+  grid-row-end: 5;
+}
+.target-itemtopleft {
+  grid-column-start: 1;
+  grid-column-end: 1;
+  grid-row-start: 1;
+  grid-row-end: 1;
+}
+.target-angleItems {
+  color: white;
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: xx-large;
+}
