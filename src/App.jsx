@@ -17,7 +17,6 @@ function App() {
       <Router>
         <Routes>
           <Route path="/nostromo/user/:userId" element={<Home />} />
-          <Route path="/nostromo/:env" element={<Login />} />
           <Route path="/nostromo" element={<Login />} />
           <Route path="/nostromo/nurses" element={<Nurses />} />
         </Routes>

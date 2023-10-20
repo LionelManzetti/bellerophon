@@ -1,18 +1,11 @@
 import { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { users } from '../../datasets/users.js';
 
 const Login = () => {
   const navigate = useNavigate();
-  const { env } = useParams();
   const userIdArray = users.map((user) => user.id);
   const [userCode, setUserCode] = useState('');
-
-  if (env === 'central') {
-    window.localStorage.setItem('env', 'central');
-  } else {
-    window.localStorage.setItem('env', 'local');
-  }
 
   const handleChange = (e) => {
     setUserCode(e.target.value.toLocaleUpperCase());
@@ -23,7 +16,18 @@ const Login = () => {
     if (userIdArray.includes(userCode)) {
       navigate('/nostromo/user/' + userCode);
     } else {
-      alert('Wrong code ' + userCode);
+      if (userCode === 'CEN') {
+        window.localStorage.setItem('env', 'central');
+        alert('Ordinateur définit comme central');
+      } else if (userCode === 'LOC') {
+        window.localStorage.setItem('env', 'local');
+        alert('Ordinateur définit comme local');
+      } else if (userCode === 'NUR') {
+        window.localStorage.setItem('env', 'nurses');
+        navigate('/nostromo/nurses');
+      } else {
+        alert('Wrong code ' + userCode);
+      }
     }
   };
 
