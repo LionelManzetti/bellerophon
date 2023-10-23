@@ -81,6 +81,35 @@ const ConnexionPuzzle = ({ targets, centerTile }) => {
     window.location.reload(false);
   };
 
+  const GetTileConnexionsFrom = (tile, from) => {
+    //Array of connexions [0,1,...] 0=top, 1=right, 2= bottom, 3=left
+    switch (tile.type) {
+      case 0: //ligne
+      case 4: //croisement
+        return [(from + 2) % 4];
+      case 1: //arc
+      case 3: // double courbe
+        switch (tile.rotation) {
+          case 0:
+            return [3 - from];
+          case 1:
+            return [5 - from];
+          case 2:
+            return [3 - from];
+          case 3:
+          default:
+            return [1 - from];
+        }
+      case 2: {
+        // T
+        return [0, 1, 2, 3].filter((v) => v != tile.rotation && v != from);
+      }
+      case 5: // cul de sac
+        return [];
+    }
+    return [];
+  };
+
   const GetTileConnexions = (tile) => {
     //Array of connexions [0,1,...] 0=top, 1=right, 2= bottom, 3=left
     switch (tile.type) {
@@ -154,6 +183,18 @@ const ConnexionPuzzle = ({ targets, centerTile }) => {
     }
   };
 
+  const GetEntryTileAndDirection = (computer) => {
+    if (computer <= 3) {
+      return [computer - 1, 0];
+    } else if (computer <= 6) {
+      return [(computer - 3) * 3 - 1, 1];
+    } else if (computer <= 9) {
+      return [15 - computer, 2];
+    } else {
+      return [(12 - computer) * 3, 3];
+    }
+  };
+
   const onValidate = (e) => {
     e.preventDefault();
     //test if any grid tile is not set
@@ -207,7 +248,7 @@ const ConnexionPuzzle = ({ targets, centerTile }) => {
           }
         }
         if (c == 1 && (i + 1) % 3 == 0) {
-          if (!targets.includes(4 + (i % 3))) {
+          if (!targets.includes(4 + Math.floor(i / 3))) {
             alert(
               'La tuile ' +
                 (i + 1) +
@@ -235,14 +276,175 @@ const ConnexionPuzzle = ({ targets, centerTile }) => {
           }
         }
         //test internal connexions
-        // TODOOOOOOOOOOOOOOOOOO
+        if (c == 0 && i > 2) {
+          const connectedTile = grid[i - 3];
+          const connectedTileConnexions = GetTileConnexions(connectedTile);
+          if (!connectedTileConnexions.includes(2)) {
+            alert(
+              'La tuile ' +
+                (i + 1) +
+                ' est connectée à du vide (vers le haut).',
+            );
+            anyWrongConnexion = true;
+            return;
+          }
+        }
+        if (c == 2 && i < 6) {
+          const connectedTile = grid[i + 3];
+          const connectedTileConnexions = GetTileConnexions(connectedTile);
+          if (!connectedTileConnexions.includes(0)) {
+            alert(
+              'La tuile ' + (i + 1) + ' est connectée à du vide (vers le bas).',
+            );
+            anyWrongConnexion = true;
+            return;
+          }
+        }
+        if (c == 1 && (i + 1) % 3 != 0) {
+          const connectedTile = grid[i + 1];
+          const connectedTileConnexions = GetTileConnexions(connectedTile);
+          if (!connectedTileConnexions.includes(3)) {
+            alert(
+              'La tuile ' +
+                (i + 1) +
+                ' est connectée à du vide (vers la droite).',
+            );
+            anyWrongConnexion = true;
+            return;
+          }
+        }
+        if (c == 3 && i % 3 != 0) {
+          const connectedTile = grid[i - 1];
+          const connectedTileConnexions = GetTileConnexions(connectedTile);
+          if (!connectedTileConnexions.includes(1)) {
+            alert(
+              'La tuile ' +
+                (i + 1) +
+                ' est connectée à du vide (vers la gauche).',
+            );
+            anyWrongConnexion = true;
+            return;
+          }
+        }
       });
       if (anyWrongConnexion) {
         return;
       }
     }
     //Test if same types computer are properly linked
-    // TOODDDDDDOOOOOOOOOOOOO
+    let computersDone = [];
+    const ConnectedGroups = new Array(
+      new Array(),
+      new Array(),
+      new Array(),
+      new Array(),
+    );
+    let i = 0;
+    console.log(targets);
+    console.log(ConnectedGroups);
+    targets.forEach((c) => {
+      if (!computersDone.includes(c)) {
+        ConnectedGroups[i].push(c);
+        computersDone.push(c);
+        let tilesAlreadyProcessed = new Array();
+        //what is the entry tile for this computer
+        const EntryTileNumberAndDirection = GetEntryTileAndDirection(c);
+        console.log('result : ');
+        console.log(EntryTileNumberAndDirection);
+        let TilesToProcess = new Array(EntryTileNumberAndDirection);
+        //loop while we have tiles to process
+        while (TilesToProcess.length > 0) {
+          const tileNumberAndDirection = TilesToProcess.shift();
+          const tileNumber = tileNumberAndDirection[0];
+          const fromDirection = tileNumberAndDirection[1];
+          console.log('current tile');
+          console.log(tileNumberAndDirection);
+          if (!tilesAlreadyProcessed.includes(tileNumber)) {
+            const tile = grid[tileNumber];
+            if (tile.type != 3 && tile.type != 4) {
+              tilesAlreadyProcessed.push(tileNumber);
+            }
+            const connexions = GetTileConnexionsFrom(tile, fromDirection);
+            console.log(connexions);
+            connexions.forEach((c) => {
+              if (c == 0 && tileNumber <= 2) {
+                //handle target on top row
+                const target = tileNumber + 1;
+                computersDone.push(target);
+                ConnectedGroups[i].push(target);
+              } else if (c == 2 && tileNumber >= 6) {
+                //handle target on bottom row
+                const target = 15 - tileNumber;
+                computersDone.push(target);
+                ConnectedGroups[i].push(target);
+              } else if (c == 1 && (tileNumber + 1) % 3 == 0) {
+                //handle target on right column
+                const target = 4 + Math.floor(tileNumber / 3);
+                computersDone.push(target);
+                ConnectedGroups[i].push(target);
+              } else if (c == 3 && tileNumber % 3 == 0) {
+                //handle target on left column
+                const target = 12 - tileNumber / 3;
+                computersDone.push(target);
+                ConnectedGroups[i].push(target);
+              } else if (c == 0 && tileNumber > 2) {
+                //handle next tile on top
+                const nextTileNumber = tileNumber - 3;
+                TilesToProcess.push([nextTileNumber, 2]);
+                console.log('we push');
+                console.log([nextTileNumber, 2]);
+              } else if (c == 2 && tileNumber < 6) {
+                //handle next tile on bottom
+                const nextTileNumber = tileNumber + 3;
+                TilesToProcess.push([nextTileNumber, 0]);
+                console.log('we push');
+                console.log([nextTileNumber, 0]);
+              } else if (c == 1 && (tileNumber + 1) % 3 != 0) {
+                //handle next tile on bottom
+                const nextTileNumber = tileNumber + 1;
+                TilesToProcess.push([nextTileNumber, 3]);
+                console.log('we push');
+                console.log([nextTileNumber, 3]);
+              } else if (c == 3 && tileNumber % 3 != 0) {
+                //handle next tile on bottom
+                const nextTileNumber = tileNumber - 1;
+                TilesToProcess.push([nextTileNumber, 1]);
+                console.log('we push');
+                console.log([nextTileNumber, 1]);
+              }
+            });
+          }
+        }
+        console.log(ConnectedGroups[i]);
+        //We are done with this group/computer, go to next if any
+        i++;
+      }
+    });
+
+    console.log('ConnectedGroups');
+    console.log(ConnectedGroups);
+    //on check les connections (2 possibilités : soit tout dans le premier groupe, soit rouge dans groupe 0 et bleu dans 1)
+    if (
+      ConnectedGroups[0].includes(targets[0]) &&
+      !ConnectedGroups[0].includes(targets[1])
+    ) {
+      alert('Les ordinateurs rouges ne sont pas connectés entre eux...');
+      return;
+    }
+    if (
+      ConnectedGroups[0].includes(targets[2]) &&
+      !ConnectedGroups[0].includes(targets[3])
+    ) {
+      alert('Les ordinateurs bleus ne sont pas connectés entre eux...');
+      return;
+    }
+    if (
+      ConnectedGroups[1].includes(targets[2]) &&
+      !ConnectedGroups[1].includes(targets[3])
+    ) {
+      alert('Les ordinateurs bleus ne sont pas connectés entre eux...');
+      return;
+    }
 
     //If no failures before, we are good
     alert('Ca semble bon gros !!!');
