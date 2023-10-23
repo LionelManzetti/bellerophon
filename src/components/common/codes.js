@@ -1,4 +1,4 @@
-export const identity_check_navigation_code = '101549';
+export const identity_check_navigation_code = '1449';
 
 export const unlock_navigation_code = 'NAV757';
 

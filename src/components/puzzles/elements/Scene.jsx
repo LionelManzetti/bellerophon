@@ -75,7 +75,7 @@ const Scene = ({
               blocs.
             </p>
             <Button className="play-retry-button" onClick={onClick}>
-              {gameOver ? 'Recommencer' : 'Jouer'}
+              {gameOver ? 'Recommencer' : 'Démarrer'}
             </Button>
           </div>
         </div>

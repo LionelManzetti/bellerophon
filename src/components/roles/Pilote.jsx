@@ -73,12 +73,12 @@ const Pilote = ({ isEnvCentral }) => {
     return primaryCheckCode == navigation_primary_code ? (
       <div className="roles-centeredContent">
         <div className="roles-content">
-          Code vérification identité (6 chiffres) :
+          Code vérification identité (4 chiffres) :
         </div>
         <input
           className="roles-inputBox"
           type="text"
-          maxLength="6"
+          maxLength="4"
           value={idCheckCode}
           onChange={handleIdCheckChange}
           placeholder="...."
