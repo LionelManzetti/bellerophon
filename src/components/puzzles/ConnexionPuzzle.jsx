@@ -3,7 +3,7 @@ import { useState } from 'react';
 import ConnexionItem from './elements/ConnexionItem';
 import Target from './elements/Target';
 
-const ConnexionPuzzle = ({ targets, centerTile }) => {
+const ConnexionPuzzle = ({ targets, centerTile, shortCircuit, onSuccess }) => {
   const [grid, setGrid] = useState([]);
 
   const changeItemTypeAndRotationInGrid = (position, type, rotation) => {
@@ -78,7 +78,7 @@ const ConnexionPuzzle = ({ targets, centerTile }) => {
 
   const onReset = (e) => {
     e.preventDefault();
-    window.location.reload(false);
+    initGridContent(gridContent);
   };
 
   const GetTileConnexionsFrom = (tile, from) => {
@@ -88,7 +88,6 @@ const ConnexionPuzzle = ({ targets, centerTile }) => {
       case 4: //croisement
         return [(from + 2) % 4];
       case 1: //arc
-      case 3: // double courbe
         switch (tile.rotation) {
           case 0:
             return [3 - from];
@@ -99,6 +98,18 @@ const ConnexionPuzzle = ({ targets, centerTile }) => {
           case 3:
           default:
             return [1 - from];
+        }
+      case 3: // double courbe
+        switch (tile.rotation) {
+          case 0:
+            if (from == 0) return [3];
+            else if (from == 1) return [2];
+            else if (from == 2) return [1];
+            else return [0];
+          case 1:
+          default:
+            if (from <= 1) return [1 - from];
+            else return [5 - from];
         }
       case 2: {
         // T
@@ -340,32 +351,29 @@ const ConnexionPuzzle = ({ targets, centerTile }) => {
       new Array(),
     );
     let i = 0;
-    console.log(targets);
-    console.log(ConnectedGroups);
     targets.forEach((c) => {
       if (!computersDone.includes(c)) {
+        console.log('New computer : ' + c);
         ConnectedGroups[i].push(c);
         computersDone.push(c);
         let tilesAlreadyProcessed = new Array();
         //what is the entry tile for this computer
         const EntryTileNumberAndDirection = GetEntryTileAndDirection(c);
-        console.log('result : ');
-        console.log(EntryTileNumberAndDirection);
         let TilesToProcess = new Array(EntryTileNumberAndDirection);
         //loop while we have tiles to process
         while (TilesToProcess.length > 0) {
           const tileNumberAndDirection = TilesToProcess.shift();
           const tileNumber = tileNumberAndDirection[0];
           const fromDirection = tileNumberAndDirection[1];
-          console.log('current tile');
-          console.log(tileNumberAndDirection);
           if (!tilesAlreadyProcessed.includes(tileNumber)) {
             const tile = grid[tileNumber];
             if (tile.type != 3 && tile.type != 4) {
               tilesAlreadyProcessed.push(tileNumber);
             }
             const connexions = GetTileConnexionsFrom(tile, fromDirection);
-            console.log(connexions);
+            /*console.log(tileNumber);
+            console.log(fromDirection);
+            console.log(connexions);*/
             connexions.forEach((c) => {
               if (c == 0 && tileNumber <= 2) {
                 //handle target on top row
@@ -391,63 +399,81 @@ const ConnexionPuzzle = ({ targets, centerTile }) => {
                 //handle next tile on top
                 const nextTileNumber = tileNumber - 3;
                 TilesToProcess.push([nextTileNumber, 2]);
-                console.log('we push');
-                console.log([nextTileNumber, 2]);
               } else if (c == 2 && tileNumber < 6) {
                 //handle next tile on bottom
                 const nextTileNumber = tileNumber + 3;
                 TilesToProcess.push([nextTileNumber, 0]);
-                console.log('we push');
-                console.log([nextTileNumber, 0]);
               } else if (c == 1 && (tileNumber + 1) % 3 != 0) {
                 //handle next tile on bottom
                 const nextTileNumber = tileNumber + 1;
                 TilesToProcess.push([nextTileNumber, 3]);
-                console.log('we push');
-                console.log([nextTileNumber, 3]);
               } else if (c == 3 && tileNumber % 3 != 0) {
                 //handle next tile on bottom
                 const nextTileNumber = tileNumber - 1;
                 TilesToProcess.push([nextTileNumber, 1]);
-                console.log('we push');
-                console.log([nextTileNumber, 1]);
               }
             });
           }
         }
-        console.log(ConnectedGroups[i]);
         //We are done with this group/computer, go to next if any
         i++;
       }
     });
 
-    console.log('ConnectedGroups');
     console.log(ConnectedGroups);
-    //on check les connections (2 possibilités : soit tout dans le premier groupe, soit rouge dans groupe 0 et bleu dans 1)
-    if (
-      ConnectedGroups[0].includes(targets[0]) &&
-      !ConnectedGroups[0].includes(targets[1])
-    ) {
-      alert('Les ordinateurs rouges ne sont pas connectés entre eux...');
+    //on check les connections, 2 cas possible, court circuit ou non :
+    if (ConnectedGroups[0].length != 2 || ConnectedGroups[1].length != 2) {
+      alert(
+        'Les connections finales ne sont pas correctes. Les ordinateurs doivent être connectés entre eux deux par deux.',
+      );
       return;
-    }
-    if (
-      ConnectedGroups[0].includes(targets[2]) &&
-      !ConnectedGroups[0].includes(targets[3])
-    ) {
-      alert('Les ordinateurs bleus ne sont pas connectés entre eux...');
-      return;
-    }
-    if (
-      ConnectedGroups[1].includes(targets[2]) &&
-      !ConnectedGroups[1].includes(targets[3])
-    ) {
-      alert('Les ordinateurs bleus ne sont pas connectés entre eux...');
-      return;
+    } else if (shortCircuit) {
+      // court circuit - : (1 rouge et 1 bleu dans chaque groupe)
+      if (
+        !(
+          ConnectedGroups[0].includes(targets[0]) &&
+          (ConnectedGroups[0].includes(targets[2]) ||
+            ConnectedGroups[0].includes(targets[3]))
+        )
+      ) {
+        alert('Court circuit invalide...');
+        return;
+      }
+      if (
+        !(
+          ConnectedGroups[1].includes(targets[1]) &&
+          (ConnectedGroups[1].includes(targets[2]) ||
+            ConnectedGroups[1].includes(targets[3]))
+        )
+      ) {
+        alert('Court circuit invalide...');
+        return;
+      }
+    } else {
+      //cas classique : (rouge dans groupe 0 et bleu dans 1)
+      if (
+        !ConnectedGroups[0].includes(targets[0]) ||
+        !ConnectedGroups[0].includes(targets[1])
+      ) {
+        alert('Les ordinateurs rouges ne sont pas connectés entre eux...');
+        return;
+      }
+      if (
+        !ConnectedGroups[1].includes(targets[2]) ||
+        !ConnectedGroups[1].includes(targets[3])
+      ) {
+        alert('Les ordinateurs bleus ne sont pas connectés entre eux...');
+        return;
+      }
     }
 
-    //If no failures before, we are good
-    alert('Ca semble bon gros !!!');
+    //If no failures before, we are good*
+    if (shortCircuit) {
+      alert('court circuit effectué avec succès !');
+    } else {
+      alert('connexions effectuées avec succès !');
+    }
+    onSuccess();
   };
 
   return (

@@ -13,6 +13,10 @@ const ConnexionItem = ({ content, changeItemTypeAndRotationInGrid }) => {
 
   let { position, type, rotation } = content;
 
+  const reset = () => {
+    changeItemTypeAndRotationInGrid(position, -1, rotation);
+  };
+
   const pos = position[1] + (position[0] - 1) * 3;
   const divClassName = 'grid-item' + pos.toString() + ' grid-item';
 
@@ -94,8 +98,12 @@ const ConnexionItem = ({ content, changeItemTypeAndRotationInGrid }) => {
         rotation = 1;
         break;
     }
-    changeItemTypeAndRotationInGrid(position, type, rotation);
     setUserCode(code);
+    if (type >= 0) {
+      e.target.value = '';
+      setUserCode('');
+      changeItemTypeAndRotationInGrid(position, type, rotation);
+    }
   };
 
   if (type < 0) {
@@ -138,7 +146,11 @@ const ConnexionItem = ({ content, changeItemTypeAndRotationInGrid }) => {
       img = <img className={imgClassName} src={Empty} r />;
   }
 
-  return <div className={divClassName}>{img}</div>;
+  return (
+    <div className={divClassName} onDoubleClick={reset}>
+      {img}
+    </div>
+  );
 };
 
 export default ConnexionItem;
