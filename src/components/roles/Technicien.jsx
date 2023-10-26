@@ -43,7 +43,7 @@ const Technicien = () => {
             </div>
             <ConnexionPuzzle
               targets={[1, 6, 7, 12]}
-              centerTile={[3, 0]}
+              centerTile={[2, 0]}
               shortCircuit={true}
               onSuccess={unlockMedBay}
             />
