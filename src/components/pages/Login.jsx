@@ -35,13 +35,7 @@ const Login = () => {
   return (
     <div className="login-container">
       <h1 className="login-title">Bienvenue sur la page de connexion du</h1>
-      <img
-        src={logo}
-        className="login-logo"
-        alt="logo du projet bellerophon"
-        width="600"
-        height="100"
-      />
+      <img src={logo} className="login-logo" alt="logo du projet bellerophon" />
       <h2 className="login-helper">Veuillez saisir votre code personnel :</h2>
       <input
         className="login-input"

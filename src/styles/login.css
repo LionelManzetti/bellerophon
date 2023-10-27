@@ -93,3 +93,19 @@
   background-color: lightgreen;
   transition: 0.5s;
 }
+
+.login-logo {
+  width: 60%;
+}
+
+@media (min-width: 1200px) {
+  .login-logo {
+    width: 30%;
+  }
+}
+
+@media (max-width: 600px) {
+  .login-logo {
+    width: 80%;
+  }
+}
