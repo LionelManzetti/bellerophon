@@ -15,7 +15,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (userIdArray.includes(userCode)) {
-      navigate('/nostromo/user/' + userCode);
+      navigate('/bellerophon/user/' + userCode);
     } else {
       if (userCode === 'CEN') {
         window.localStorage.setItem('env', 'central');
@@ -25,7 +25,7 @@ const Login = () => {
         alert('Ordinateur définit comme local');
       } else if (userCode === 'NUR') {
         window.localStorage.setItem('env', 'nurses');
-        navigate('/nostromo/nurses');
+        navigate('/bellerophon/nurses');
       } else {
         alert('Wrong code ' + userCode);
       }
@@ -38,7 +38,7 @@ const Login = () => {
       <img
         src={logo}
         className="login-logo"
-        alt="logo du projet Nostromo"
+        alt="logo du projet bellerophon"
         width="600"
         height="100"
       />
