@@ -19,12 +19,9 @@ const ConnexionPuzzle = ({ targets, centerTile, shortCircuit, onSuccess }) => {
 
   const generateTargets = () => {
     let targetsContent = [
+      <div className={'target-itemtopleft target-item target-none'} key={4} />,
       <div
-        className={'target-itemtopleft target-angleItems target-none'}
-        key={4}
-      />,
-      <div
-        className={'target-itembottomright target-angleItems target-none'}
+        className={'target-itembottomright target-item target-none'}
         key={5}
       />,
     ];

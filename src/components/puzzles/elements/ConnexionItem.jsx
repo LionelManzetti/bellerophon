@@ -109,10 +109,11 @@ const ConnexionItem = ({ content, changeItemTypeAndRotationInGrid }) => {
   if (type < 0) {
     return (
       <div className={divClassName}>
+        <img className="img" src={Empty}></img>
         <input
           className="input-code"
           type="text"
-          maxLength="5"
+          maxLength="3"
           value={userCode}
           onChange={onTileCodeEntered}
           placeholder="---"
@@ -122,7 +123,7 @@ const ConnexionItem = ({ content, changeItemTypeAndRotationInGrid }) => {
   }
 
   let imgClassName = 'img rotate' + (rotation * 90).toString();
-  let img = <img className={imgClassName}></img>;
+  let img = <img className={imgClassName} src={Empty}></img>;
   switch (type) {
     case 0:
       img = <img className={imgClassName} src={Cable0} />;
@@ -143,7 +144,7 @@ const ConnexionItem = ({ content, changeItemTypeAndRotationInGrid }) => {
       img = <img className={imgClassName} src={Cable5} />;
       break;
     default:
-      img = <img className={imgClassName} src={Empty} r />;
+      img = <img className={imgClassName} src={Empty} />;
   }
 
   return (
