@@ -18,21 +18,19 @@
 }
 
 .login-title {
-  font-size: 4.5rem;
+  font-size: 3.5rem;
   font-weight: 700;
   margin-bottom: 1rem;
+  letter-spacing: 0.5rem;
   text-align: center;
-  text-transform: uppercase;
-  text-family: 'Orbitron', sans-serif;
-  background: -webkit-linear-gradient(white, grey);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-family: 'Orbitron', sans-serif;
+  color: white;
 }
 
 .login-helper {
   font-size: 3rem;
-  font-weight: 300;
-  margin-bottom: 1rem;
+  font-weight: 400;
+  margin-top: 10rem;
   text-align: center;
   color: white;
 }
@@ -57,7 +55,6 @@
   color: white;
   &::placeholder {
     color: white;
-    opacity: 0.5;
   }
 }
 
@@ -68,9 +65,16 @@
   border-radius: 0.5rem;
   font-size: 2rem;
   font-weight: 500;
-  background-color: lightgreen;
-  color: black;
+  background-color: white;
+  box-shadow: 0px 0px 1.5rem 0rem white;
+  color: #906aff;
   cursor: pointer;
+  margin-bottom: 1rem;
+  &:hover {
+    background-color: #906aff;
+    box-shadow: 0px 0px 1.5rem 0rem #906aff;
+    color: white;
+  }
 }
 
 .input-wrapper {

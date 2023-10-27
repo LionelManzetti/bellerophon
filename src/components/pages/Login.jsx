@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { users } from '../../datasets/users.js';
+import logo from '../../../public/logo.svg';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -33,10 +34,15 @@ const Login = () => {
 
   return (
     <div className="login-container">
-      <h1 className="login-title">
-        Bienvenue sur la page de connexion du Belérophon
-      </h1>
-      <h2 className="login-helper">Saisissez votre code personnel :</h2>
+      <h1 className="login-title">Bienvenue sur la page de connexion du</h1>
+      <img
+        src={logo}
+        className="login-logo"
+        alt="logo du projet Nostromo"
+        width="600"
+        height="100"
+      />
+      <h2 className="login-helper">Veuillez saisir votre code personnel :</h2>
       <input
         className="login-input"
         type="text"
