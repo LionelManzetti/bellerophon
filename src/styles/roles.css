@@ -1,7 +1,7 @@
 .roles-container {
   border: 1cap;
   border-style: solid;
-  border-color: lightgreen;
+  border-color: white;
   margin: 2rem;
   background-color: #4a4a4e9f;
   position: relative;
@@ -40,7 +40,7 @@
   font-weight: 500;
   margin-bottom: 1rem;
   text-align: center;
-  color: lightgreen;
+  color: white;
   text-transform: uppercase;
 }
 
@@ -76,7 +76,7 @@
   margin-bottom: 1rem;
   font-style: italic;
   text-align: center;
-  color: lightgreen;
+  color: white;
 }
 
 .roles-inputBox {

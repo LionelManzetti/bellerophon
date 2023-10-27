@@ -34,7 +34,7 @@ const Login = () => {
   return (
     <div className="login-container">
       <h1 className="login-title">
-        Bienvenue sur la page de connexion du Bellérophon
+        Bienvenue sur la page de connexion du Belérophon
       </h1>
       <h2 className="login-helper">Saisissez votre code personnel :</h2>
       <input
