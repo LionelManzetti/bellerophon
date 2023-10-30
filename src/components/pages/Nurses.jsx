@@ -57,8 +57,7 @@ function Nurses() {
   };
 
   const GetPatientInfo = (patient) => {
-    const { id, firstName, lastName, geneticCode } = patient;
-    const hackedGeneticCode = window.localStorage.getItem(id);
+    const { firstName, lastName, realGeneticCode, contaminated } = patient;
 
     if (!timerStarted) {
       return (
@@ -96,10 +95,8 @@ function Nurses() {
         <div>
           <div>Nom : {lastName}</div>
           <div>Prénom : {firstName}</div>
-          <div>Contaminé : {hackedGeneticCode ? 'Oui' : 'non'}</div>
-          <div>
-            Code hyper-sommeil réel : {hackedGeneticCode || geneticCode}
-          </div>
+          <div>Contaminé : {contaminated}</div>
+          <div>Code hyper-sommeil réel : {realGeneticCode}</div>
           <image></image>
         </div>
       );

@@ -11,10 +11,12 @@ import { useState } from 'react';
 const ConnexionItem = ({ content, changeItemTypeAndRotationInGrid }) => {
   const [userCode, setUserCode] = useState('');
 
-  let { position, type, rotation } = content;
+  let { position, type, rotation, locked } = content;
 
   const reset = () => {
-    changeItemTypeAndRotationInGrid(position, -1, rotation);
+    if (!locked) {
+      changeItemTypeAndRotationInGrid(position, -1, rotation);
+    }
   };
 
   const pos = position[1] + (position[0] - 1) * 3;
@@ -24,76 +26,107 @@ const ConnexionItem = ({ content, changeItemTypeAndRotationInGrid }) => {
     const code = e.target.value.toLocaleUpperCase();
     switch (code) {
       // courbe
+      case 'CA1':
+      case 'CB1':
       case 'CC1':
-        type = 1;
-        rotation = 0;
-        break;
-      case 'CC2':
         type = 1;
         rotation = 1;
         break;
-      case 'CC3':
+      case 'CA2':
+      case 'CB2':
+      case 'CC2':
         type = 1;
-        rotation = 2;
+        rotation = 0;
         break;
-      case 'CC4':
+      case 'CA3':
+      case 'CB3':
+      case 'CC3':
         type = 1;
         rotation = 3;
         break;
+      case 'CA4':
+      case 'CB4':
+      case 'CC4':
+        type = 1;
+        rotation = 2;
+        break;
       // ligne droite
-      case 'LL1':
+      case 'LA1':
+      case 'LA3':
+      case 'LB1':
+      case 'LB3':
+      case 'LC1':
+      case 'LC3':
         type = 0;
         rotation = 0;
         break;
-      case 'LL2':
+      case 'LA2':
+      case 'LA4':
+      case 'LB2':
+      case 'LB4':
+      case 'LC2':
+      case 'LC4':
         type = 0;
         rotation = 1;
         break;
       // Intersection en T
-      case 'TT1':
-        type = 2;
-        rotation = 0;
-        break;
-      case 'TT2':
-        type = 2;
-        rotation = 1;
-        break;
-      case 'TT3':
-        type = 2;
-        rotation = 2;
-        break;
-      case 'TT4':
+      case 'TA1':
+      case 'TB1':
+      case 'TC1':
         type = 2;
         rotation = 3;
         break;
-      // End
-      case 'EE1':
-        type = 5;
-        rotation = 0;
+      case 'TA2':
+      case 'TB2':
+      case 'TC2':
+        type = 2;
+        rotation = 2;
         break;
-      case 'EE2':
-        type = 5;
+      case 'TA3':
+      case 'TB3':
+      case 'TC3':
+        type = 2;
         rotation = 1;
         break;
-      case 'EE3':
+      case 'TA4':
+      case 'TB4':
+      case 'TC4':
+        type = 2;
+        rotation = 0;
+        break;
+      // End
+      case 'FC1':
         type = 5;
         rotation = 2;
         break;
-      case 'EE4':
+      case 'FC2':
+        type = 5;
+        rotation = 1;
+        break;
+      case 'FC3':
+        type = 5;
+        rotation = 0;
+        break;
+      case 'FC4':
         type = 5;
         rotation = 3;
         break;
       // Croix
-      case 'XX1':
+      case 'JB1':
+      case 'JB2':
+      case 'JB3':
+      case 'JB4':
         type = 4;
         rotation = 0;
         break;
       // double courbe
-      case 'DC1':
+      case 'JA1':
+      case 'JA3':
         type = 3;
         rotation = 0;
         break;
-      case 'DC2':
+      case 'JA2':
+      case 'JA4':
         type = 3;
         rotation = 1;
         break;

@@ -1,5 +1,6 @@
 const Base = ({ currentUser }) => {
-  const { firstName, lastName, age, gender, job, specialty } = currentUser;
+  const { firstName, lastName, age, gender, job, specialty, helperMessage } =
+    currentUser;
   return (
     <div className="roles-container">
       <div className="roles-title">
@@ -19,6 +20,7 @@ const Base = ({ currentUser }) => {
         <div className="roles-content">Fonction : {job}</div>
         <div className="roles-content">Spécialité : {specialty}</div>
       </div>
+      <div className="roles-content">Divers : {helperMessage}</div>
     </div>
   );
 };

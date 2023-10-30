@@ -45,12 +45,14 @@ const ConnexionPuzzle = ({ targets, centerTile, shortCircuit, onSuccess }) => {
           position: [Math.floor(i / 3) + 1, (i % 3) + 1],
           type: centerTile[0],
           rotation: centerTile[1],
+          locked: true,
         });
       } else {
         gridContent.push({
           position: [Math.floor(i / 3) + 1, (i % 3) + 1],
           type: -1,
           rotation: 0,
+          locked: false,
         });
       }
     }
