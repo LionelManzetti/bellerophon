@@ -109,7 +109,11 @@ function Nurses() {
     );
     return (
       <div className="roles-content">
-        {patient ? GetPatientInfo(patient) : 'Patient non trouvé...'}
+        {patient
+          ? GetPatientInfo(patient)
+          : userName === ''
+          ? ''
+          : 'Patient non trouvé...'}
       </div>
     );
   };

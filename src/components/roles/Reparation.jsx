@@ -65,7 +65,9 @@ const Reparation = ({ isEnvCentral }) => {
           </div>
         </div>
       ) : (
-        ''
+        <div className="roles-content">
+          Accès interdit hors ordinateur central
+        </div>
       )}
     </div>
   );
