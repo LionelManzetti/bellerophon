@@ -1,8 +1,5 @@
 .roles-container {
-  border: 1cap;
-  border-style: solid;
-  border-color: white;
-  margin: 2rem;
+  padding: 5rem;
   background-color: #4a4a4e9f;
   position: relative;
   width: 100%;

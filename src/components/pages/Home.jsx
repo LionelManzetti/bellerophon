@@ -10,16 +10,19 @@ import Securite from '../roles/Securite.jsx';
 import Technicien from '../roles/Technicien.jsx';
 import Reparation from '../roles/Reparation.jsx';
 import Entrainement from '../roles/Entrainement.jsx';
+import { useState } from 'react';
 
 const Home = () => {
   const navigate = useNavigate();
   const { userId } = useParams();
   const currentUser = users.find((u) => u.id == userId);
   const isEnvCentral = window.localStorage.getItem('env') === 'central';
+  const [elementDisplayed, setElementDisplayed] = useState(null);
 
   const handleGetBack = (e) => {
     e.preventDefault();
-    navigate(-1);
+    if (elementDisplayed) setElementDisplayed(null);
+    else navigate(-1);
   };
 
   const getRoleElement = (role) => {
@@ -52,23 +55,59 @@ const Home = () => {
     }
   };
 
+  const buttonTranslate = (role) => {
+    switch (role) {
+      case 'Base':
+        return 'Mes données personnelles';
+      case 'Médecin':
+        return 'Dossiers médicaux';
+      case 'Responsable personnel spatial':
+        return 'Liste des colons';
+      case 'Responsable passagers':
+        return 'Liste des colons';
+      case 'Responsable personnel terraformation':
+        return 'Liste des colons';
+      case 'Sécurité':
+        return 'Accès';
+      case 'Pirate':
+        return '/root/patient/database';
+      case 'Technicien':
+        return 'Technicien';
+      case 'Entrainement':
+        return 'Test de capacités';
+      case 'Pilote':
+        return 'Navigation';
+      case 'Réparation':
+        return 'Réparation';
+
+      default:
+        return role;
+    }
+  };
+
   return (
     <div className="home-container">
       {currentUser
-        ? currentUser.roles.split(' - ').map((role) => {
+        ? !elementDisplayed &&
+          currentUser.roles.split(' - ').map((role) => {
             return (
-              <div className="home-container" key={role}>
-                {getRoleElement(role)}
-              </div>
+              <button
+                className="submenu-button"
+                key={role}
+                onClick={() => setElementDisplayed(role)}
+              >
+                {buttonTranslate(role)}
+              </button>
             );
           })
         : "Pas d'utilisateur trouvé"}
+      {elementDisplayed && getRoleElement(elementDisplayed)}
       <button
         type="submit"
         className="login-button get-back-button"
         onClick={handleGetBack}
       >
-        RETOUR AU MENU
+        RETOUR
       </button>
     </div>
   );

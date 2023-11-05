@@ -1,6 +1,6 @@
 .canvas {
-  height: 700px !important;
-  width: 700px !important;
+  height: 600px !important;
+  width: 60% !important;
   background-color: black;
   background-image: linear-gradient(to bottom, black, #003f59);
   cursor: pointer;
