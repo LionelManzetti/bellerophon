@@ -17,7 +17,7 @@ function Pirate({ isEnvCentral }) {
 
     return (
       <div className="roles-content">
-        {patient ? <PatientInfo patient={patient} /> : 'Patient non trouvé...'}
+        {patient ? <PatientInfo patient={patient} /> : 'Passager non trouvé...'}
       </div>
     );
   };
@@ -36,7 +36,7 @@ function Pirate({ isEnvCentral }) {
             maxLength="20"
             value={userName}
             onChange={handlePatientSearch}
-            placeholder="nom du patient"
+            placeholder="nom du passager"
           />
           {GetPatientSection()}
         </>

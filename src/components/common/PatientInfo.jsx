@@ -22,7 +22,7 @@ const PatientInfo = ({ patient }) => {
       alert('Code du passager alteré avec succès !');
     } else {
       alert(
-        'Attention, un code génétique est composé de 4 lettres aléatoires parmis les lettres R, J, V et B (ex: RRRB)',
+        'Attention, un code génétique est composé de 4 lettres aléatoires parmis les lettres R, J, V, O et B (ex: RRJB)',
       );
     }
   };
