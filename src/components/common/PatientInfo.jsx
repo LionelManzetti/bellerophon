@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import '../../styles/login.css';
+import '../../styles/roles.css';
 
 // eslint-disable-next-line react/prop-types
 const PatientInfo = ({ patient }) => {
@@ -11,12 +12,12 @@ const PatientInfo = ({ patient }) => {
     window.localStorage.getItem(id) || 'Pas de code hacké';
 
   const handleAlteredGeneticCode = (e) => {
-    setAlteredGeneticCode(e.target.value);
+    setAlteredGeneticCode(e.target.value.toLocaleUpperCase());
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const reg = RegExp(/^[RJVB]+$/);
+    const reg = RegExp(/^[RJVOB]+$/);
     if (alteredGeneticCode.length == 4 && reg.test(alteredGeneticCode)) {
       window.localStorage.setItem(id, alteredGeneticCode);
       alert('Code du passager alteré avec succès !');
@@ -43,9 +44,9 @@ const PatientInfo = ({ patient }) => {
           Saisissez un nouveau code hyper-sommeil :
         </h2>
         <input
-          className="login-input"
+          className="roles-genCodeInput"
           type="text"
-          maxLength="5"
+          maxLength="4"
           value={alteredGeneticCode}
           onChange={handleAlteredGeneticCode}
           placeholder="____"

@@ -40,10 +40,10 @@ const Login = () => {
       <input
         className="login-input"
         type="text"
-        maxLength="4"
+        maxLength="3"
         value={userCode}
         onChange={handleChange}
-        placeholder="____"
+        placeholder="___"
       />
       <button type="submit" className="login-button" onClick={handleSubmit}>
         VALIDER

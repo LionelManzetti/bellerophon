@@ -103,6 +103,29 @@
   }
 }
 
+.roles-genCodeInput {
+  width: 10ch;
+  height: 5rem;
+  max-width: 10ch;
+  letter-spacing: 1ch;
+  margin-bottom: 2rem;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  align-content: center;
+  align-self: center;
+  justify-self: center;
+  border: none;
+  outline: none;
+  font-size: 3rem;
+  font-weight: 500;
+  background-color: transparent;
+  color: white;
+  &::placeholder {
+    color: white;
+  }
+}
+
 .hacking-container {
   display: flex;
   flex-direction: column;

@@ -1,32 +1,33 @@
 import { useState } from 'react';
 import ConnexionPuzzle from '../puzzles/ConnexionPuzzle';
+import {
+  handlePuzzleStatus,
+  validatePuzzle,
+} from '../../helpers/FirebaseHelper';
 
 const Technicien = () => {
   const [posteControleUnlocked, setposteControleUnlocked] = useState(false);
   const [blocMedicalUnlocked, setblocMedicalUnlocked] = useState(false);
 
+  handlePuzzleStatus('PosteDeControle', (status) => {
+    setposteControleUnlocked(status);
+  });
+  handlePuzzleStatus('MedicalBay', (status) => {
+    setblocMedicalUnlocked(status);
+  });
+
   const unlockPC = () => {
     setposteControleUnlocked(true);
+    validatePuzzle('PosteDeControle');
   };
 
   const unlockMedBay = () => {
     setblocMedicalUnlocked(true);
+    validatePuzzle('MedicalBay');
   };
 
   const [pcVisible, setPcVisible] = useState(false);
   const [bmVisible, setBmVisible] = useState(false);
-
-  const ButtonTo = (Target) => {
-    return (
-      <button
-        className="submenu-button"
-        key={Target}
-        onClick={() => setElementDisplayed(Target)}
-      >
-        {Target}
-      </button>
-    );
-  };
 
   const GetPosteDeControle = () => {
     return (

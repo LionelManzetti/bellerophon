@@ -17,6 +17,7 @@
     "@react-three/drei": "^9.84.2",
     "@react-three/fiber": "^8.14.2",
     "antd": "^5.9.2",
+    "firebase": "^10.5.2",
     "lodash": "^4.17.21",
     "prettier": "^3.0.3",
     "react": "^18.2.0",
