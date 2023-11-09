@@ -207,6 +207,10 @@ const ConnexionPuzzle = ({ targets, centerTile, shortCircuit, onSuccess }) => {
   };
 
   const onValidate = (e) => {
+    //onSuccess();
+    //AlertMessage('I CHEAT PLEASE REMOVE ME');
+    //return;
+
     e.preventDefault();
     //test if any grid tile is not set
     const numberOfTilesNotSet = grid.filter((t) => t.type == -1).length;
