@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { users } from '../../datasets/users.js';
+import { GetNiceGeneticCode } from '../common/PatientInfo.jsx';
 
 function Medecin() {
   const [userName, setUserCode] = useState('');
@@ -16,7 +17,8 @@ function Medecin() {
         <div>Prénom : {firstName}</div>
         <div>Age : {age}</div>
         <div>Genre : {gender}</div>
-        <div>Code hyper-sommeil : {hackedGeneticCode || geneticCode}</div>
+        <div>Code hyper-sommeil :</div>
+        {GetNiceGeneticCode(hackedGeneticCode || geneticCode)}
       </div>
     );
   };
