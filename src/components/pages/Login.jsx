@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { users } from '../../datasets/users.js';
 import logo from '../../assets/logo.svg';
+import { AlertMessage, ErrorMessage } from '../common/messaging.js';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -14,20 +15,20 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (userIdArray.includes(userCode)) {
+    if (userIdArray.includes(userCode) && userCode != '') {
       navigate('/bellerophon/user/' + userCode);
     } else {
       if (userCode === 'CEN') {
         window.localStorage.setItem('env', 'central');
-        alert('Ordinateur définit comme central');
+        AlertMessage('Ordinateur définit comme central');
       } else if (userCode === 'LOC') {
         window.localStorage.setItem('env', 'local');
-        alert('Ordinateur définit comme local');
+        AlertMessage('Ordinateur définit comme local');
       } else if (userCode === 'NUR') {
         window.localStorage.setItem('env', 'nurses');
         navigate('/bellerophon/nurses');
       } else {
-        alert('Wrong code ' + userCode);
+        ErrorMessage('Code  erroné : ' + userCode, true);
       }
     }
   };

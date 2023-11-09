@@ -2,6 +2,7 @@ import '../../styles/puzzles.css';
 import { useState } from 'react';
 import ConnexionItem from './elements/ConnexionItem';
 import Target from './elements/Target';
+import { AlertMessage, ErrorMessage } from '../common/messaging';
 
 const ConnexionPuzzle = ({ targets, centerTile, shortCircuit, onSuccess }) => {
   const [grid, setGrid] = useState([]);
@@ -210,7 +211,7 @@ const ConnexionPuzzle = ({ targets, centerTile, shortCircuit, onSuccess }) => {
     //test if any grid tile is not set
     const numberOfTilesNotSet = grid.filter((t) => t.type == -1).length;
     if (numberOfTilesNotSet > 0) {
-      alert(
+      ErrorMessage(
         'Il manque ' +
           numberOfTilesNotSet +
           ' connexion' +
@@ -222,7 +223,7 @@ const ConnexionPuzzle = ({ targets, centerTile, shortCircuit, onSuccess }) => {
     for (let i = 0; i < 3; i++) {
       const numberOfTilesOfThisType = grid.filter((t) => t.type == i).length;
       if (numberOfTilesOfThisType > 3) {
-        alert(
+        ErrorMessage(
           'Trop de connexion de type ' +
             GetTileNameFromType(i) +
             ' utilisées (max 3) !',
@@ -233,7 +234,7 @@ const ConnexionPuzzle = ({ targets, centerTile, shortCircuit, onSuccess }) => {
     for (let i = 3; i < 6; i++) {
       const numberOfTilesOfThisType = grid.filter((t) => t.type == i).length;
       if (numberOfTilesOfThisType > 2) {
-        alert(
+        ErrorMessage(
           'Trop de connexion de type ' +
             GetTileNameFromType(i) +
             ' utilisées (max 1) !',
@@ -250,7 +251,7 @@ const ConnexionPuzzle = ({ targets, centerTile, shortCircuit, onSuccess }) => {
         //test wall connexions
         if (c == 0 && i <= 2) {
           if (!targets.includes(i + 1)) {
-            alert(
+            ErrorMessage(
               'La tuile ' + (i + 1) + ' est connectée à un mur (vers le haut).',
             );
             anyWrongConnexion = true;
@@ -259,7 +260,7 @@ const ConnexionPuzzle = ({ targets, centerTile, shortCircuit, onSuccess }) => {
         }
         if (c == 1 && (i + 1) % 3 == 0) {
           if (!targets.includes(4 + Math.floor(i / 3))) {
-            alert(
+            ErrorMessage(
               'La tuile ' +
                 (i + 1) +
                 ' est connectée à un mur (vers la droite).',
@@ -269,7 +270,7 @@ const ConnexionPuzzle = ({ targets, centerTile, shortCircuit, onSuccess }) => {
         }
         if (c == 2 && i >= 6) {
           if (!targets.includes(15 - i)) {
-            alert(
+            ErrorMessage(
               'La tuile ' + (i + 1) + ' est connectée à un mur (vers le bas).',
             );
             anyWrongConnexion = true;
@@ -277,7 +278,7 @@ const ConnexionPuzzle = ({ targets, centerTile, shortCircuit, onSuccess }) => {
         }
         if (c == 3 && i % 3 == 0) {
           if (!targets.includes(12 - i / 3)) {
-            alert(
+            ErrorMessage(
               'La tuile ' +
                 (i + 1) +
                 ' est connectée à un mur (vers la gauche).',
@@ -290,7 +291,7 @@ const ConnexionPuzzle = ({ targets, centerTile, shortCircuit, onSuccess }) => {
           const connectedTile = grid[i - 3];
           const connectedTileConnexions = GetTileConnexions(connectedTile);
           if (!connectedTileConnexions.includes(2)) {
-            alert(
+            ErrorMessage(
               'La tuile ' +
                 (i + 1) +
                 ' est connectée à du vide (vers le haut).',
@@ -303,7 +304,7 @@ const ConnexionPuzzle = ({ targets, centerTile, shortCircuit, onSuccess }) => {
           const connectedTile = grid[i + 3];
           const connectedTileConnexions = GetTileConnexions(connectedTile);
           if (!connectedTileConnexions.includes(0)) {
-            alert(
+            ErrorMessage(
               'La tuile ' + (i + 1) + ' est connectée à du vide (vers le bas).',
             );
             anyWrongConnexion = true;
@@ -314,7 +315,7 @@ const ConnexionPuzzle = ({ targets, centerTile, shortCircuit, onSuccess }) => {
           const connectedTile = grid[i + 1];
           const connectedTileConnexions = GetTileConnexions(connectedTile);
           if (!connectedTileConnexions.includes(3)) {
-            alert(
+            ErrorMessage(
               'La tuile ' +
                 (i + 1) +
                 ' est connectée à du vide (vers la droite).',
@@ -327,7 +328,7 @@ const ConnexionPuzzle = ({ targets, centerTile, shortCircuit, onSuccess }) => {
           const connectedTile = grid[i - 1];
           const connectedTileConnexions = GetTileConnexions(connectedTile);
           if (!connectedTileConnexions.includes(1)) {
-            alert(
+            ErrorMessage(
               'La tuile ' +
                 (i + 1) +
                 ' est connectée à du vide (vers la gauche).',
@@ -422,7 +423,7 @@ const ConnexionPuzzle = ({ targets, centerTile, shortCircuit, onSuccess }) => {
     console.log(ConnectedGroups);
     //on check les connections, 2 cas possible, court circuit ou non :
     if (ConnectedGroups[0].length != 2 || ConnectedGroups[1].length != 2) {
-      alert(
+      ErrorMessage(
         'Les connections finales ne sont pas correctes. Les ordinateurs doivent être connectés entre eux deux par deux.',
       );
       return;
@@ -435,7 +436,7 @@ const ConnexionPuzzle = ({ targets, centerTile, shortCircuit, onSuccess }) => {
             ConnectedGroups[0].includes(targets[3]))
         )
       ) {
-        alert('Court circuit invalide...');
+        ErrorMessage('Court circuit invalide...');
         return;
       }
       if (
@@ -445,7 +446,7 @@ const ConnexionPuzzle = ({ targets, centerTile, shortCircuit, onSuccess }) => {
             ConnectedGroups[1].includes(targets[3]))
         )
       ) {
-        alert('Court circuit invalide...');
+        ErrorMessage('Court circuit invalide...');
         return;
       }
     } else {
@@ -454,23 +455,27 @@ const ConnexionPuzzle = ({ targets, centerTile, shortCircuit, onSuccess }) => {
         !ConnectedGroups[0].includes(targets[0]) ||
         !ConnectedGroups[0].includes(targets[1])
       ) {
-        alert('Les ordinateurs rouges ne sont pas connectés entre eux...');
+        ErrorMessage(
+          'Les ordinateurs rouges ne sont pas connectés entre eux...',
+        );
         return;
       }
       if (
         !ConnectedGroups[1].includes(targets[2]) ||
         !ConnectedGroups[1].includes(targets[3])
       ) {
-        alert('Les ordinateurs bleus ne sont pas connectés entre eux...');
+        ErrorMessage(
+          'Les ordinateurs bleus ne sont pas connectés entre eux...',
+        );
         return;
       }
     }
 
     //If no failures before, we are good*
     if (shortCircuit) {
-      alert('court circuit effectué avec succès !');
+      AlertMessage('court circuit effectué avec succès !');
     } else {
-      alert('connexions effectuées avec succès !');
+      AlertMessage('connexions effectuées avec succès !');
     }
     onSuccess();
   };
@@ -481,10 +486,10 @@ const ConnexionPuzzle = ({ targets, centerTile, shortCircuit, onSuccess }) => {
         {grid.length > 0 && generatePuzzleGrid(grid)}
         {generateTargets()}
       </div>
-      <button className="button" onClick={onReset}>
+      <button className="submenu-button" onClick={onReset}>
         Remise à zéro
       </button>
-      <button className="button" onClick={onValidate}>
+      <button className="submenu-button" onClick={onValidate}>
         Valider les connections
       </button>
     </div>

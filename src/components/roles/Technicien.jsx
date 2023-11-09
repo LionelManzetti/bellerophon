@@ -8,22 +8,26 @@ import {
 const Technicien = () => {
   const [posteControleUnlocked, setposteControleUnlocked] = useState(false);
   const [blocMedicalUnlocked, setblocMedicalUnlocked] = useState(false);
+  const [firstLoading, setFirstLoading] = useState(true);
 
-  handlePuzzleStatus('PosteDeControle', (status) => {
-    setposteControleUnlocked(status);
-  });
-  handlePuzzleStatus('MedicalBay', (status) => {
-    setblocMedicalUnlocked(status);
-  });
+  if (firstLoading) {
+    handlePuzzleStatus('PosteDeControle', (status) => {
+      setposteControleUnlocked(status);
+    });
+    handlePuzzleStatus('MedicalBay', (status) => {
+      setblocMedicalUnlocked(status);
+    });
+    setFirstLoading(false);
+  }
 
   const unlockPC = () => {
-    setposteControleUnlocked(true);
     validatePuzzle('PosteDeControle');
+    setposteControleUnlocked(true);
   };
 
   const unlockMedBay = () => {
-    setblocMedicalUnlocked(true);
     validatePuzzle('MedicalBay');
+    setblocMedicalUnlocked(true);
   };
 
   const [pcVisible, setPcVisible] = useState(false);

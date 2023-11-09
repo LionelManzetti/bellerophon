@@ -6,6 +6,7 @@ import Nurses from './components/pages/Nurses';
 import './styles/login.css';
 import './styles/roles.css';
 import './App.css';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/bellerophon/nurses" element={<Nurses />} />
         </Routes>
       </Router>
+      <ToastContainer />
     </div>
   );
 }

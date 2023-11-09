@@ -1,7 +1,7 @@
 import { useState } from 'react';
-
 import '../../styles/login.css';
 import '../../styles/roles.css';
+import { AlertMessage, ErrorMessage } from './messaging';
 
 // eslint-disable-next-line react/prop-types
 const PatientInfo = ({ patient }) => {
@@ -20,9 +20,9 @@ const PatientInfo = ({ patient }) => {
     const reg = RegExp(/^[RJVOB]+$/);
     if (alteredGeneticCode.length == 4 && reg.test(alteredGeneticCode)) {
       window.localStorage.setItem(id, alteredGeneticCode);
-      alert('Code du passager alteré avec succès !');
+      //AlertMessage('Code du passager alteré avec succès !');
     } else {
-      alert(
+      ErrorMessage(
         'Attention, un code génétique est composé de 4 lettres aléatoires parmis les lettres R, J, V, O et B (ex: RRJB)',
       );
     }
