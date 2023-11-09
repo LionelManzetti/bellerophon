@@ -52,22 +52,28 @@ const ConnexionItem = ({ content, changeItemTypeAndRotationInGrid }) => {
         break;
       // ligne droite
       case 'LA1':
-      case 'LA3':
       case 'LB1':
-      case 'LB3':
       case 'LC1':
-      case 'LC3':
         type = 0;
         rotation = 0;
         break;
+      case 'LA3':
+      case 'LB3':
+      case 'LC3':
+        type = 0;
+        rotation = 2;
+        break;
       case 'LA2':
-      case 'LA4':
       case 'LB2':
-      case 'LB4':
       case 'LC2':
-      case 'LC4':
         type = 0;
         rotation = 1;
+        break;
+      case 'LA4':
+      case 'LB4':
+      case 'LC4':
+        type = 0;
+        rotation = 3;
         break;
       // Intersection en T
       case 'TA1':

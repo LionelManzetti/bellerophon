@@ -246,6 +246,18 @@ const ConnexionPuzzle = ({ targets, centerTile, shortCircuit, onSuccess }) => {
         return;
       }
     }
+    //Test if there are any tile in 'corrupted' position
+    const numberOfLTilesWithRotation3Or4 = grid.filter(
+      (t) => t.type == 0 && t.rotation >= 2,
+    ).length;
+    if (numberOfLTilesWithRotation3Or4 > 0) {
+      ErrorMessage(
+        'Au moins une connexion de type ' +
+          GetTileNameFromType(0) +
+          ' est dans une position corrompue.',
+      );
+      return;
+    }
     //Test if there are any wrong connexion
     let anyWrongConnexion = false;
     for (let i = 0; i < 9; i++) {
