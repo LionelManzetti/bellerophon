@@ -82,6 +82,8 @@ const ConnexionPuzzle = ({ targets, centerTile, shortCircuit, onSuccess }) => {
   };
 
   const GetTileConnexionsFrom = (tile, from) => {
+    //console.log(tile);
+    //console.log(from);
     //Array of connexions [0,1,...] 0=top, 1=right, 2= bottom, 3=left
     switch (tile.type) {
       case 0: //ligne
@@ -102,11 +104,13 @@ const ConnexionPuzzle = ({ targets, centerTile, shortCircuit, onSuccess }) => {
       case 3: // double courbe
         switch (tile.rotation) {
           case 0:
+          case 2:
             if (from == 0) return [3];
             else if (from == 1) return [2];
             else if (from == 2) return [1];
             else return [0];
           case 1:
+          case 3:
           default:
             if (from <= 1) return [1 - from];
             else return [5 - from];
