@@ -127,14 +127,20 @@ const ConnexionItem = ({ content, changeItemTypeAndRotationInGrid }) => {
         break;
       // double courbe
       case 'JA1':
-      case 'JA3':
         type = 3;
         rotation = 0;
         break;
+      case 'JA3':
+        type = 3;
+        rotation = 2;
+        break;
       case 'JA2':
-      case 'JA4':
         type = 3;
         rotation = 1;
+        break;
+      case 'JA4':
+        type = 3;
+        rotation = 3;
         break;
     }
     setUserCode(code);

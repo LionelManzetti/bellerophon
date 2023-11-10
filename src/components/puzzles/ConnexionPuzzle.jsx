@@ -250,12 +250,18 @@ const ConnexionPuzzle = ({ targets, centerTile, shortCircuit, onSuccess }) => {
     const numberOfLTilesWithRotation3Or4 = grid.filter(
       (t) => t.type == 0 && t.rotation >= 2,
     ).length;
-    if (numberOfLTilesWithRotation3Or4 > 0) {
-      ErrorMessage(
-        'Au moins une connexion de type ' +
-          GetTileNameFromType(0) +
-          ' est dans une position corrompue.',
-      );
+    const numberOfFCWithRotation2 = grid.filter(
+      (t) => t.type == 5 && t.rotation == 1,
+    ).length;
+    const numberOfJAWithRotation1or2 = grid.filter(
+      (t) => t.type == 3 && t.rotation <= 1,
+    ).length;
+    const errors =
+      numberOfLTilesWithRotation3Or4 +
+      numberOfFCWithRotation2 +
+      numberOfJAWithRotation1or2;
+    if (errors > 0) {
+      ErrorMessage('Au moins une des connections est défaillante...');
       return;
     }
     //Test if there are any wrong connexion

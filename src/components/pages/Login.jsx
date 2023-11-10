@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { users } from '../../datasets/users.js';
 import logo from '../../assets/logo.svg';
 import { AlertMessage, ErrorMessage } from '../common/messaging.js';
+import { invalidatePuzzle } from '../../helpers/FirebaseHelper.js';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -13,12 +14,16 @@ const Login = () => {
     setUserCode(e.target.value.toLocaleUpperCase());
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const validate = () => {
     if (userIdArray.includes(userCode) && userCode != '') {
       navigate('/bellerophon/user/' + userCode);
     } else {
-      if (userCode === 'CEN') {
+      if (userCode === 'RAZ') {
+        invalidatePuzzle('ActivateNavigation');
+        invalidatePuzzle('AlignCapteurs');
+        invalidatePuzzle('MedicalBay');
+        invalidatePuzzle('PosteDeControle');
+      } else if (userCode === 'CEN') {
         window.localStorage.setItem('env', 'central');
         AlertMessage('Ordinateur définit comme central');
       } else if (userCode === 'LOC') {
@@ -30,7 +35,12 @@ const Login = () => {
       } else {
         ErrorMessage('Code  erroné : ' + userCode, true);
       }
+      setUserCode('');
     }
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    validate();
   };
 
   return (
@@ -44,6 +54,11 @@ const Login = () => {
         maxLength="3"
         value={userCode}
         onChange={handleChange}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === 13) {
+            validate();
+          }
+        }}
         placeholder="___"
       />
       <button type="submit" className="login-button" onClick={handleSubmit}>

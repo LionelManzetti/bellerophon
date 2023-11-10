@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { users } from '../../datasets/users.js';
 import '../../Styles/roles.css';
+import { GetNiceGeneticCode } from '../common/PatientInfo.jsx';
 
 const useInterval = (f, delay) => {
   const [timer, setTimer] = useState(undefined);
@@ -29,10 +30,7 @@ function Nurses() {
 
   const total_analysis_time = 300;
 
-  const [start, stop, running] = useInterval(
-    () => setTimeRemaining((x) => x - 1),
-    1000,
-  );
+  const [start, stop] = useInterval(() => setTimeRemaining((x) => x - 1), 1000);
 
   const handleChange = (e) => {
     setUserCode(e.target.value);
@@ -67,7 +65,7 @@ function Nurses() {
             className="login-button"
             onClick={onStartAnalyse}
           >
-            Lancer l'analyse
+            {"Lancer l'analyse"}
           </button>
         </div>
       );
@@ -85,7 +83,7 @@ function Nurses() {
             className="login-button"
             onClick={onStopAnalyse}
           >
-            stopper l'analyse
+            {"Stopper l'analyse"}
           </button>
         </div>
       );
@@ -96,7 +94,8 @@ function Nurses() {
           <div>Nom : {lastName}</div>
           <div>Prénom : {firstName}</div>
           <div>Contaminé : {contaminated}</div>
-          <div>Code hyper-sommeil réel : {realGeneticCode}</div>
+          <div>Code hyper-sommeil réel :</div>
+          {GetNiceGeneticCode(realGeneticCode)}
           <image></image>
         </div>
       );

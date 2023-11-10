@@ -19,6 +19,10 @@ const app = initializeApp(firebaseConfig);
 
 const database = getDatabase(app);
 
+export const invalidatePuzzle = (puzzle) => {
+  set(ref(database, 'puzzles/' + puzzle + '/'), false);
+};
+
 export const validatePuzzle = (puzzle) => {
   set(ref(database, 'puzzles/' + puzzle + '/'), true);
 };

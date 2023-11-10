@@ -32,9 +32,44 @@ const Reparation = ({ isEnvCentral }) => {
     setunlockNavigationCode(true);
   };
 
+  const ancrage1 = window.localStorage.getItem('Ancrage1');
+  const ancrage2 = window.localStorage.getItem('Ancrage2');
+  const ancrage3 = window.localStorage.getItem('Ancrage3');
+  const ancrage4 = window.localStorage.getItem('Ancrage4');
+  const direction = window.localStorage.getItem('Direction');
+
   const GetCapteurSection = () => {
     console.log(unlockNavigationPuzzle);
     console.log(unlockNavigationCode);
+    if (ancrage1 != null && ancrage1 != '') {
+      return (
+        <div className="roles-content">
+          <div className="roles-content">NAVIGATION OPERATIONNELLE</div>
+          <div className="roles-content">Paramètres : </div>
+          <div className="roles-lines">
+            <div className="roles-content">Direction :</div>
+            <div className="roles-content">{direction}</div>
+          </div>
+          <div className="roles-lines">
+            <div className="roles-content">Ancrage 1 :</div>
+            <div className="roles-content">{ancrage1}</div>
+          </div>
+          <div className="roles-lines">
+            <div className="roles-content">Ancrage 2 :</div>
+            <div className="roles-content">{ancrage2}</div>
+          </div>
+          <div className="roles-lines">
+            <div className="roles-content">Ancrage 3 :</div>
+            <div className="roles-content">{ancrage3}</div>
+          </div>
+          <div className="roles-lines">
+            <div className="roles-content">Ancrage 4 :</div>
+            <div className="roles-content">{ancrage4}</div>
+          </div>
+        </div>
+      );
+    }
+
     return !unlockNavigationPuzzle ? (
       <div className="roles-content">
         <div className="roles-content">
@@ -77,8 +112,8 @@ const Reparation = ({ isEnvCentral }) => {
         {activateNavigationVisible && (
           <div className="roles-content">
             <ConnexionPuzzle
-              targets={[1, 2, 3, 4]}
-              centerTile={[2, 2]}
+              targets={[2, 7, 6, 11]}
+              centerTile={[5, 2]}
               shortCircuit={false}
               onSuccess={unlockNavCode}
               key={1}
