@@ -241,7 +241,7 @@ const ConnexionPuzzle = ({ targets, centerTile, shortCircuit, onSuccess }) => {
     }
     for (let i = 3; i < 6; i++) {
       const numberOfTilesOfThisType = grid.filter((t) => t.type == i).length;
-      if (numberOfTilesOfThisType > 2) {
+      if (numberOfTilesOfThisType > 1) {
         ErrorMessage(
           'Trop de connexion de type ' +
             GetTileNameFromType(i) +
