@@ -93,7 +93,7 @@ function Nurses() {
         <div>
           <div>Nom : {lastName}</div>
           <div>Prénom : {firstName}</div>
-          <div>Contaminé : {contaminated}</div>
+          <div>{contaminated}</div>
           <div>Code hyper-sommeil réel :</div>
           {GetNiceGeneticCode(realGeneticCode)}
           <image></image>

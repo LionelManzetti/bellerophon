@@ -24,7 +24,7 @@ const Scene = ({
   const [isPlaying, setIsPlaying] = useState(false);
   const [stack, setStack] = useState([]);
 
-  const targetScore = 10;
+  const targetScore = 30;
 
   //Helper function for getting gradient block colors based on the number of blocks
   ///////////////////////////////////////////////////////////////////////////////////
