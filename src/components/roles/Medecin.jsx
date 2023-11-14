@@ -9,7 +9,8 @@ function Medecin() {
   };
 
   const GetPatientInfo = (patient) => {
-    const { id, firstName, lastName, age, gender, geneticCode } = patient;
+    const { id, firstName, lastName, age, gender, geneticCode, helperMessage } =
+      patient;
     const hackedGeneticCode = window.localStorage.getItem(id);
     return (
       <div>
@@ -19,6 +20,7 @@ function Medecin() {
         <div>Genre : {gender}</div>
         <div>Code hyper-sommeil :</div>
         {GetNiceGeneticCode(hackedGeneticCode || geneticCode)}
+        <div>{helperMessage}</div>
       </div>
     );
   };
