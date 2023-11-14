@@ -13,7 +13,7 @@ export const users = [
     category: 'Clef',
     logo: 'Responsable',
     realGeneticCode: 'BJRO',
-    contaminated: 'Oui',
+    contaminated: 'Contaminé  ',
   },
   {
     id: 'M51',
@@ -29,7 +29,7 @@ export const users = [
     category: 'Clef',
     logo: 'Responsable',
     realGeneticCode: 'JVRV',
-    contaminated: 'Oui',
+    contaminated: 'Contaminé  ',
   },
   {
     id: 'D21',
@@ -46,7 +46,7 @@ export const users = [
     category: 'Clef',
     logo: 'Responsable',
     realGeneticCode: 'BOOV',
-    contaminated: 'Oui',
+    contaminated: 'Contaminé  ',
   },
   {
     id: 'H78',
@@ -62,7 +62,7 @@ export const users = [
     category: 'Clef',
     logo: 'Sécurité',
     realGeneticCode: 'BJOV',
-    contaminated: 'Oui',
+    contaminated: 'Contaminé  ',
   },
   {
     id: 'S61',
@@ -79,7 +79,7 @@ export const users = [
     category: 'Clef',
     logo: 'Navigateur',
     realGeneticCode: 'BBVV',
-    contaminated: 'Oui',
+    contaminated: 'Contaminé  ',
   },
   {
     id: 'A68',
@@ -146,7 +146,7 @@ export const users = [
     category: 'Clef',
     logo: 'Technicien',
     realGeneticCode: 'BRRR',
-    contaminated: 'Oui',
+    contaminated: 'Contaminé  ',
   },
   {
     id: 'D82',
@@ -280,7 +280,7 @@ export const users = [
     category: '',
     logo: 'Politicien',
     realGeneticCode: 'BORR',
-    contaminated: 'Oui',
+    contaminated: 'Contaminé  ',
   },
   {
     id: 'S93',
@@ -378,7 +378,7 @@ export const users = [
     category: 'Eugéniste',
     logo: 'Colon',
     realGeneticCode: 'BJJR',
-    contaminated: 'non',
+    contaminated: '',
   },
   {
     id: 'K62',
@@ -394,7 +394,7 @@ export const users = [
     category: 'Eugéniste leader',
     logo: '',
     realGeneticCode: '*',
-    contaminated: 'non',
+    contaminated: '',
   },
   {
     id: 'K79',
@@ -410,7 +410,7 @@ export const users = [
     category: 'Eugéniste',
     logo: 'Technicien',
     realGeneticCode: 'BORR',
-    contaminated: 'non',
+    contaminated: '',
   },
   {
     id: 'M19',
@@ -426,7 +426,7 @@ export const users = [
     category: 'Eugéniste pirate',
     logo: '',
     realGeneticCode: '*',
-    contaminated: 'non',
+    contaminated: '',
   },
   {
     id: 'L15',
@@ -442,7 +442,7 @@ export const users = [
     category: 'Eugéniste',
     logo: 'Colon',
     realGeneticCode: 'OOVV',
-    contaminated: 'non',
+    contaminated: '',
   },
   {
     id: 'T64',
@@ -458,7 +458,7 @@ export const users = [
     category: 'Eugéniste repenti',
     logo: '',
     realGeneticCode: '*',
-    contaminated: 'non',
+    contaminated: '',
   },
   {
     id: '',
@@ -538,7 +538,7 @@ export const users = [
     category: 'Décédé',
     logo: '',
     realGeneticCode: 'JORV',
-    contaminated: 'Oui',
+    contaminated: 'Contaminé  ',
   },
   {
     id: 'B54',
@@ -554,7 +554,7 @@ export const users = [
     category: 'Décédé',
     logo: '',
     realGeneticCode: 'BJJR',
-    contaminated: 'Oui',
+    contaminated: 'Contaminé  ',
   },
   {
     id: 'O97',
@@ -570,7 +570,7 @@ export const users = [
     category: 'Décédé',
     logo: '',
     realGeneticCode: 'BBRR',
-    contaminated: 'Oui',
+    contaminated: 'Contaminé  ',
   },
   {
     id: 'O66',
@@ -586,6 +586,6 @@ export const users = [
     category: 'Décédé',
     logo: '',
     realGeneticCode: 'OOBV',
-    contaminated: 'Oui',
+    contaminated: 'Contaminé  ',
   },
 ];
