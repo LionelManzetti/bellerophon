@@ -3,6 +3,7 @@ import './App.css';
 import Home from './components/pages/Home';
 import Login from './components/pages/Login';
 import Nurses from './components/pages/Nurses';
+import EasterEgg from './components/pages/EasterEgg';
 import './styles/login.css';
 import './styles/roles.css';
 import './App.css';
@@ -16,6 +17,7 @@ function App() {
           <Route path="/bellerophon/user/:userId" element={<Home />} />
           <Route path="/bellerophon" element={<Login />} />
           <Route path="/bellerophon/nurses" element={<Nurses />} />
+          <Route path="/bellerophon/easteregg" element={<EasterEgg />} />
         </Routes>
       </Router>
       <ToastContainer />

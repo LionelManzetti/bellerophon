@@ -41,3 +41,30 @@ export const handlePuzzleStatus = (puzzle, setPuzzleStatusCallback) => {
       console.error(error);
     });
 };
+
+export const getHighestScores = () => {
+  const dbRef = ref(database);
+  const highestScores = get(child(dbRef, 'scores/'))
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        const scoreArray = [];
+        Object.values(snapshot.val()).forEach((score) => {
+          scoreArray.push(score);
+        });
+
+        console.log('scoreArray', scoreArray);
+
+        return scoreArray
+          .sort((a, b) => parseFloat(b.score) - parseFloat(a.score))
+          .slice(0, 10);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  return highestScores;
+};
+
+export const setHighScore = (newHighScores) => {
+  set(ref(database, 'scores/'), newHighScores);
+};

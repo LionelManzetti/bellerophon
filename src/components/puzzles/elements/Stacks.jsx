@@ -59,10 +59,9 @@ const Stacks = ({
     canvasRef.current.addEventListener('click', onClick);
     document.addEventListener('keyup', ({ code }) => {
       if (
-        code === 'Space' ||
-        code === 'ArrowUp' ||
-        code === 'ArrowDown' ||
-        code === 'Enter'
+        // code is letter k or d
+        code === 'KeyK' ||
+        code === 'KeyD'
       ) {
         onClick();
       }

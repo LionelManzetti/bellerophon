@@ -19,6 +19,7 @@ const Scene = ({
   setScore,
   canvasRef,
   isEnvCentral,
+  highScores,
 }) => {
   const mesh = useRef();
   const [isPlaying, setIsPlaying] = useState(false);
@@ -47,14 +48,35 @@ const Scene = ({
           className="how-to-play-component-container"
         >
           <div className="how-to-play-inner-container">
+            {highScores.length > 0 && (
+              <div className="high-scores-container">
+                <p className="title">High Scores</p>
+                <hr />
+                {highScores
+                  .sort((a, b) => parseInt(b[1]) - parseInt(a[1]))
+                  .map((score, index) => (
+                    <div key={index}>
+                      <span className="score-name">{score.name}</span>
+                      <span className="score-value">{score.score}</span>
+                    </div>
+                  ))}
+              </div>
+            )}
             <p className="title">
-              {gameOver
+              {highScores.length > 0
+                ? null
+                : gameOver
                 ? score >= targetScore
                   ? 'Gagné !'
                   : 'Perdu !'
-                : isEnvCentral
-                ? 'Test de capacité'
-                : 'Entrainement'}
+                : null}
+              {highScores.length === 0
+                ? !gameOver
+                  ? isEnvCentral
+                    ? 'Test de capacité'
+                    : 'Entrainement'
+                  : null
+                : 'Battez le high score !'}
             </p>
             <hr />
             <p>
@@ -71,10 +93,9 @@ const Scene = ({
             </p>
             <p>
               Vous pouvez utiliser les touches suivantes:
-              <span className="keys"> Click de souris </span> |
-              <span className="keys"> Touche Entrée </span> |
-              <span className="keys"> Flèche du bas </span> | pour empiler les
-              blocs.
+              <span className="keys"> Click </span> |
+              <span className="keys"> Touche K </span> |
+              <span className="keys"> Touche D </span> | pour empiler les blocs.
             </p>
             <Button className="play-retry-button" onClick={onClick}>
               {gameOver ? 'Recommencer' : 'Démarrer'}

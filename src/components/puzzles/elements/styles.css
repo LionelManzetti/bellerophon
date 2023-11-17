@@ -11,6 +11,19 @@
   user-select: none;
 }
 
+.easter-canvas {
+  height: 600px !important;
+  width: 100% !important;
+  background-color: black;
+  background-image: linear-gradient(to bottom, black, #003f59);
+  cursor: pointer;
+  text-align: center;
+  margin: auto;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 .how-to-play-component-wrapper {
   z-index: 0 !important;
 }
@@ -38,4 +51,8 @@
       font-weight: 700;
     }
   }
+}
+
+.score-name {
+  padding-right: 10px;
 }

@@ -32,6 +32,9 @@ const Login = () => {
       } else if (userCode === 'NUR') {
         window.localStorage.setItem('env', 'nurses');
         navigate('/bellerophon/nurses');
+      } else if (userCode === 'EGG') {
+        window.localStorage.setItem('env', 'egg');
+        navigate('/bellerophon/easteregg');
       } else {
         ErrorMessage('Code  erroné : ' + userCode, true);
       }

@@ -24,6 +24,7 @@ const TowerBlocks = ({ isEnvCentral }) => {
         score={score}
         setScore={setScore}
         canvasRef={canvasRef}
+        highScores={[]}
       />
     </Canvas>
   );
