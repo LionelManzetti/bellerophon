@@ -115,7 +115,7 @@ const Scene = ({
             enableRotate={false}
           />
           <ambientLight intensity={0.3} />
-          <spotLight position={[0, 10, 0]} angle={0.5} intensity={0.8} />
+          <spotLight position={[0, 10, 0]} angle={0.5} intensity={1} />
           <pointLight position={[0, -1, 2]} intensity={0.8} />
           <Sparkles scale={100} size={30} speed={2} noise={10} />
           <Sparkles scale={50} size={20} color={getColor(stack.length)} />
