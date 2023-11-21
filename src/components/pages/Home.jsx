@@ -72,11 +72,11 @@ const Home = () => {
       case 'Médecin':
         return 'Dossiers médicaux';
       case 'Responsable personnel spatial':
-        return 'Liste des colons';
+        return 'Liste du personnel spatial';
       case 'Responsable passagers':
-        return 'Liste des colons';
+        return 'Liste des passagers';
       case 'Responsable personnel terraformation':
-        return 'Liste des colons';
+        return 'Liste du personnel terraformation';
       case 'Sécurité':
         return 'Accès';
       case 'Pirate':
