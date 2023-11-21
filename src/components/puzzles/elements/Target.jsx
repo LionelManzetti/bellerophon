@@ -1,12 +1,8 @@
 import '../../../styles/puzzles.css';
+import TargetImg from '../images/Target.png';
 
 const Target = ({ type, position }) => {
-  let divClassName = 'target-item' + position.toString();
-  if (position <= 3 || (position >= 7 && position <= 9)) {
-    divClassName += ' target-topItem';
-  } else {
-    divClassName += ' target-sideItem';
-  }
+  let divClassName = 'target-item' + position.toString() + ' target-item';
   switch (type) {
     case 0:
       divClassName += ' target-redItem';
@@ -18,7 +14,14 @@ const Target = ({ type, position }) => {
       divClassName += ' target-none';
       break;
   }
-  return <div className={divClassName} />;
+
+  let imgClassName =
+    ' target-item rotate' + (Math.floor((position - 1) / 3) * 90).toString();
+  return (
+    <div className={divClassName}>
+      <img className={imgClassName} src={TargetImg} />
+    </div>
+  );
 };
 
 export default Target;

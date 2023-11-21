@@ -29,24 +29,23 @@
 
 .grid-container {
   display: grid;
-  gap: 10px;
-  background-color: rgb(56, 56, 56);
+  gap: 5px;
+  background-color: transparent;
   align-items: center;
   justify-items: center;
   margin-bottom: 1rem;
 }
 
 .grid-item {
-  background-color: grey;
   width: 150px;
   height: 150px;
-  line-height: 150px;
-  text-align: center;
-  font-size: xx-large;
+  position: relative;
 }
 
 .input-code {
   background-color: aliceblue;
+  position: relative;
+  top: 50px;
   width: 6ch;
   height: 5rem;
   max-width: 6ch;
@@ -58,17 +57,14 @@
   justify-items: center;
   align-items: center;
   align-content: center;
-  align-self: center;
-  justify-self: center;
 }
 
 .img {
-  background-color: grey;
+  background-color: transparent;
   display: block;
   width: 150px;
   height: 150px;
-  margin-left: auto;
-  margin-right: auto;
+  position: absolute;
 }
 
 .rotate0 {
@@ -84,22 +80,11 @@
   transform: rotate(270deg);
 }
 
-.target-topItem {
-  color: white;
-  width: 150px;
-  height: 25px;
-  line-height: 25px;
-  text-align: center;
-  font-size: xx-large;
-}
-
-.target-sideItem {
-  color: white;
-  width: 25px;
-  height: 150px;
-  line-height: 150px;
-  text-align: center;
-  font-size: xx-large;
+.target-item {
+  background-color: transparent;
+  width: 75px;
+  height: 75px;
+  resize: both;
 }
 
 .target-redItem {

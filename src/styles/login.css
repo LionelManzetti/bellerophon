@@ -18,26 +18,27 @@
 }
 
 .login-title {
-  font-size: 4.5rem;
-  font-weight: 500;
+  font-size: 3.5rem;
+  font-weight: 700;
   margin-bottom: 1rem;
+  letter-spacing: 0.5rem;
   text-align: center;
-  color: lightgreen;
-  text-transform: uppercase;
+  font-family: 'Orbitron', sans-serif;
+  color: white;
 }
 
 .login-helper {
   font-size: 3rem;
-  font-weight: 300;
-  margin-bottom: 1rem;
+  font-weight: 400;
+  margin-top: 10rem;
   text-align: center;
   color: white;
 }
 
 .login-input {
-  width: 6ch;
+  width: 8ch;
   height: 5rem;
-  max-width: 6ch;
+  max-width: 8ch;
   letter-spacing: 1ch;
   margin-bottom: 2rem;
   justify-content: center;
@@ -54,7 +55,6 @@
   color: white;
   &::placeholder {
     color: white;
-    opacity: 0.5;
   }
 }
 
@@ -65,9 +65,16 @@
   border-radius: 0.5rem;
   font-size: 2rem;
   font-weight: 500;
-  background-color: lightgreen;
-  color: black;
+  background-color: white;
+  box-shadow: 0px 0px 1.5rem 0rem white;
+  color: #906aff;
   cursor: pointer;
+  margin-bottom: 1rem;
+  &:hover {
+    background-color: #906aff;
+    box-shadow: 0px 0px 1.5rem 0rem #906aff;
+    color: white;
+  }
 }
 
 .input-wrapper {
@@ -85,4 +92,20 @@
   width: 0;
   background-color: lightgreen;
   transition: 0.5s;
+}
+
+.login-logo {
+  width: 60%;
+}
+
+@media (min-width: 1200px) {
+  .login-logo {
+    width: 30%;
+  }
+}
+
+@media (max-width: 600px) {
+  .login-logo {
+    width: 80%;
+  }
 }

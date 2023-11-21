@@ -3,25 +3,24 @@ import './App.css';
 import Home from './components/pages/Home';
 import Login from './components/pages/Login';
 import Nurses from './components/pages/Nurses';
-import './styles/stars.css';
+import EasterEgg from './components/pages/EasterEgg';
 import './styles/login.css';
 import './styles/roles.css';
+import './App.css';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
     <div id="root">
-      <div className="background-container">
-        <div className="stars" />
-        <div className="twinkling" />
-      </div>
       <Router>
         <Routes>
-          <Route path="/nostromo/user/:userId" element={<Home />} />
-          <Route path="/nostromo/:env" element={<Login />} />
-          <Route path="/nostromo" element={<Login />} />
-          <Route path="/nostromo/nurses" element={<Nurses />} />
+          <Route path="/bellerophon/user/:userId" element={<Home />} />
+          <Route path="/bellerophon" element={<Login />} />
+          <Route path="/bellerophon/nurses" element={<Nurses />} />
+          <Route path="/bellerophon/easteregg" element={<EasterEgg />} />
         </Routes>
       </Router>
+      <ToastContainer />
     </div>
   );
 }

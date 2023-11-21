@@ -19,12 +19,13 @@ const Scene = ({
   setScore,
   canvasRef,
   isEnvCentral,
+  highScores,
 }) => {
   const mesh = useRef();
   const [isPlaying, setIsPlaying] = useState(false);
   const [stack, setStack] = useState([]);
 
-  const targetScore = 10;
+  const targetScore = 35;
 
   //Helper function for getting gradient block colors based on the number of blocks
   ///////////////////////////////////////////////////////////////////////////////////
@@ -47,12 +48,35 @@ const Scene = ({
           className="how-to-play-component-container"
         >
           <div className="how-to-play-inner-container">
+            {highScores.length > 0 && (
+              <div className="high-scores-container">
+                <p className="title">High Scores</p>
+                <hr />
+                {highScores
+                  .sort((a, b) => parseInt(b[1]) - parseInt(a[1]))
+                  .map((score, index) => (
+                    <div key={index}>
+                      <span className="score-name">{score.name}</span>
+                      <span className="score-value">{score.score}</span>
+                    </div>
+                  ))}
+              </div>
+            )}
             <p className="title">
-              {gameOver
+              {highScores.length > 0
+                ? null
+                : gameOver
                 ? score >= targetScore
                   ? 'Gagné !'
                   : 'Perdu !'
-                : 'Test de réflexes'}
+                : null}
+              {highScores.length === 0
+                ? !gameOver
+                  ? isEnvCentral
+                    ? 'Test de capacité'
+                    : 'Entrainement'
+                  : null
+                : 'Battez le high score !'}
             </p>
             <hr />
             <p>
@@ -69,13 +93,12 @@ const Scene = ({
             </p>
             <p>
               Vous pouvez utiliser les touches suivantes:
-              <span className="keys"> Click de souris </span> |
-              <span className="keys"> Touche Entrée </span> |
-              <span className="keys"> Flèche du bas </span> | pour empiler les
-              blocs.
+              <span className="keys"> Click </span> |
+              <span className="keys"> Touche K </span> |
+              <span className="keys"> Touche D </span> | pour empiler les blocs.
             </p>
             <Button className="play-retry-button" onClick={onClick}>
-              {gameOver ? 'Recommencer' : 'Jouer'}
+              {gameOver ? 'Recommencer' : 'Démarrer'}
             </Button>
           </div>
         </div>
@@ -113,8 +136,8 @@ const Scene = ({
             enableRotate={false}
           />
           <ambientLight intensity={0.3} />
-          <spotLight position={[0, 10, 0]} angle={0.5} intensity={0.5} />
-          <pointLight position={[0, -1, 2]} intensity={0.5} />
+          <spotLight position={[0, 10, 0]} angle={0.5} intensity={1} />
+          <pointLight position={[0, -1, 2]} intensity={0.8} />
           <Sparkles scale={100} size={30} speed={2} noise={10} />
           <Sparkles scale={50} size={20} color={getColor(stack.length)} />
           <Billboard>

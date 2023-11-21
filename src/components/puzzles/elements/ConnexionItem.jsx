@@ -11,7 +11,13 @@ import { useState } from 'react';
 const ConnexionItem = ({ content, changeItemTypeAndRotationInGrid }) => {
   const [userCode, setUserCode] = useState('');
 
-  let { position, type, rotation } = content;
+  let { position, type, rotation, locked } = content;
+
+  const reset = () => {
+    if (!locked) {
+      changeItemTypeAndRotationInGrid(position, -1, rotation);
+    }
+  };
 
   const pos = position[1] + (position[0] - 1) * 3;
   const divClassName = 'grid-item' + pos.toString() + ' grid-item';
@@ -20,91 +26,139 @@ const ConnexionItem = ({ content, changeItemTypeAndRotationInGrid }) => {
     const code = e.target.value.toLocaleUpperCase();
     switch (code) {
       // courbe
+      case 'CA1':
+      case 'CB1':
       case 'CC1':
         type = 1;
-        rotation = 0;
+        rotation = 1;
         break;
+      case 'CA2':
+      case 'CB2':
       case 'CC2':
         type = 1;
-        rotation = 1;
+        rotation = 0;
         break;
+      case 'CA3':
+      case 'CB3':
       case 'CC3':
         type = 1;
-        rotation = 2;
+        rotation = 3;
         break;
+      case 'CA4':
+      case 'CB4':
       case 'CC4':
         type = 1;
-        rotation = 3;
+        rotation = 2;
         break;
       // ligne droite
-      case 'LL1':
+      case 'LA1':
+      case 'LB1':
+      case 'LC1':
         type = 0;
         rotation = 0;
         break;
-      case 'LL2':
+      case 'LA3':
+      case 'LB3':
+      case 'LC3':
         type = 0;
-        rotation = 1;
-        break;
-      // Intersection en T
-      case 'TT1':
-        type = 2;
-        rotation = 0;
-        break;
-      case 'TT2':
-        type = 2;
-        rotation = 1;
-        break;
-      case 'TT3':
-        type = 2;
         rotation = 2;
         break;
-      case 'TT4':
+      case 'LA2':
+      case 'LB2':
+      case 'LC2':
+        type = 0;
+        rotation = 1;
+        break;
+      case 'LA4':
+      case 'LB4':
+      case 'LC4':
+        type = 0;
+        rotation = 3;
+        break;
+      // Intersection en T
+      case 'TA1':
+      case 'TB1':
+      case 'TC1':
         type = 2;
         rotation = 3;
         break;
-      // End
-      case 'EE1':
-        type = 5;
-        rotation = 0;
+      case 'TA2':
+      case 'TB2':
+      case 'TC2':
+        type = 2;
+        rotation = 2;
         break;
-      case 'EE2':
-        type = 5;
+      case 'TA3':
+      case 'TB3':
+      case 'TC3':
+        type = 2;
         rotation = 1;
         break;
-      case 'EE3':
+      case 'TA4':
+      case 'TB4':
+      case 'TC4':
+        type = 2;
+        rotation = 0;
+        break;
+      // End
+      case 'FC1':
         type = 5;
         rotation = 2;
         break;
-      case 'EE4':
+      case 'FC2':
+        type = 5;
+        rotation = 1;
+        break;
+      case 'FC3':
+        type = 5;
+        rotation = 0;
+        break;
+      case 'FC4':
         type = 5;
         rotation = 3;
         break;
       // Croix
-      case 'XX1':
+      case 'JB1':
+      case 'JB2':
+      case 'JB3':
+      case 'JB4':
         type = 4;
         rotation = 0;
         break;
       // double courbe
-      case 'DC1':
+      case 'JA1':
         type = 3;
         rotation = 0;
         break;
-      case 'DC2':
+      case 'JA3':
+        type = 3;
+        rotation = 2;
+        break;
+      case 'JA2':
         type = 3;
         rotation = 1;
         break;
+      case 'JA4':
+        type = 3;
+        rotation = 3;
+        break;
     }
-    changeItemTypeAndRotationInGrid(position, type, rotation);
     setUserCode(code);
+    if (type >= 0) {
+      e.target.value = '';
+      setUserCode('');
+      changeItemTypeAndRotationInGrid(position, type, rotation);
+    }
   };
 
   if (type < 0) {
     return (
       <div className={divClassName}>
+        <img className="img" src={Empty}></img>
         <input
           className="input-code"
           type="text"
-          maxLength="5"
+          maxLength="3"
           value={userCode}
           onChange={onTileCodeEntered}
           placeholder="---"
@@ -114,7 +168,7 @@ const ConnexionItem = ({ content, changeItemTypeAndRotationInGrid }) => {
   }
 
   let imgClassName = 'img rotate' + (rotation * 90).toString();
-  let img = <img className={imgClassName}></img>;
+  let img = <img className={imgClassName} src={Empty}></img>;
   switch (type) {
     case 0:
       img = <img className={imgClassName} src={Cable0} />;
@@ -135,10 +189,14 @@ const ConnexionItem = ({ content, changeItemTypeAndRotationInGrid }) => {
       img = <img className={imgClassName} src={Cable5} />;
       break;
     default:
-      img = <img className={imgClassName} src={Empty} r />;
+      img = <img className={imgClassName} src={Empty} />;
   }
 
-  return <div className={divClassName}>{img}</div>;
+  return (
+    <div className={divClassName} onDoubleClick={reset}>
+      {img}
+    </div>
+  );
 };
 
 export default ConnexionItem;

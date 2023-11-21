@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { users } from '../../datasets/users.js';
 import '../../Styles/roles.css';
+import { GetNiceGeneticCode } from '../common/PatientInfo.jsx';
 
 const useInterval = (f, delay) => {
   const [timer, setTimer] = useState(undefined);
@@ -29,10 +30,7 @@ function Nurses() {
 
   const total_analysis_time = 300;
 
-  const [start, stop, running] = useInterval(
-    () => setTimeRemaining((x) => x - 1),
-    1000,
-  );
+  const [start, stop] = useInterval(() => setTimeRemaining((x) => x - 1), 1000);
 
   const handleChange = (e) => {
     setUserCode(e.target.value);
@@ -57,8 +55,7 @@ function Nurses() {
   };
 
   const GetPatientInfo = (patient) => {
-    const { id, firstName, lastName, geneticCode } = patient;
-    const hackedGeneticCode = window.localStorage.getItem(id);
+    const { firstName, lastName, realGeneticCode, contaminated } = patient;
 
     if (!timerStarted) {
       return (
@@ -68,7 +65,7 @@ function Nurses() {
             className="login-button"
             onClick={onStartAnalyse}
           >
-            Lancer l'analyse
+            {"Lancer l'analyse"}
           </button>
         </div>
       );
@@ -86,7 +83,7 @@ function Nurses() {
             className="login-button"
             onClick={onStopAnalyse}
           >
-            stopper l'analyse
+            {"Stopper l'analyse"}
           </button>
         </div>
       );
@@ -96,10 +93,8 @@ function Nurses() {
         <div>
           <div>Nom : {lastName}</div>
           <div>Prénom : {firstName}</div>
-          <div>Contaminé : {hackedGeneticCode ? 'Oui' : 'non'}</div>
-          <div>
-            Code hyper-sommeil réel : {hackedGeneticCode || geneticCode}
-          </div>
+          <div>{contaminated}</div>
+          {GetNiceGeneticCode(realGeneticCode)}
           <image></image>
         </div>
       );
@@ -112,7 +107,11 @@ function Nurses() {
     );
     return (
       <div className="roles-content">
-        {patient ? GetPatientInfo(patient) : 'Patient non trouvé...'}
+        {patient
+          ? GetPatientInfo(patient)
+          : userName === ''
+          ? ''
+          : 'Patient non trouvé...'}
       </div>
     );
   };

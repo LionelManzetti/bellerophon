@@ -1,0 +1,27 @@
+.square {
+  margin: 5px;
+  width: 50px;
+  height: 50px;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  align-content: center;
+  align-self: center;
+  justify-self: center;
+}
+
+.B {
+  background: blue;
+}
+.R {
+  background: red;
+}
+.O {
+  background: orange;
+}
+.V {
+  background: green;
+}
+.J {
+  background: yellow;
+}

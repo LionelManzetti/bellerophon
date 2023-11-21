@@ -1,5 +1,5 @@
 .home-container {
-  color: white;
+  color: black;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -8,4 +8,17 @@
 
 .get-back-button {
   width: 100px;
+  margin-top: 50px;
+}
+
+.submenu-button {
+  margin: 10px;
+  font-size: 20px;
+  background-color: #906aff;
+  border: 1px solid #e5e5e5;
+  color: white;
+  &:hover {
+    background-color: white;
+    color: #906aff;
+  }
 }
